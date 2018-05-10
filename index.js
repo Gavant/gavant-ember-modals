@@ -12,7 +12,7 @@ module.exports = {
     }, initialConfig);
     return updatedConfig;
   },
-  included: function(/* app */) {
+  included: function() {
     this._super.included.apply(this, arguments);
   }
 };

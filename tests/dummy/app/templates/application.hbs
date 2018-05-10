@@ -3,4 +3,16 @@
 {{outlet}}
 {{modal-outlet}}
 
-<button {{action 'openTestModal'}}> Open Modal </button>
+<button class="btn btn-primary" {{action 'openTestModal'}}> Open Modal </button>
+
+
+{{#modal-dialog size="sm" as |modal|}}
+THETA
+  {{modal.header title="test"}}
+  {{#modal.body}}
+      <p>Test Modal</p>
+  {{/modal.body}}
+  {{#modal.footer}}
+    <a class="modal-btn" {{action modal.close}}>Close</a>
+  {{/modal.footer}}
+{{/modal-dialog}}
