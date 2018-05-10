@@ -1,0 +1,39 @@
+{{#component modalDialogComponentName
+    wrapperClass=wrapperClass
+    wrapperClassNames=wrapperClassNames
+    overlayClass=overlayClass
+    overlayClassNames=overlayClassNames
+    containerClass=containerClass
+    containerClassNames=containerClassNames
+    hasOverlay=hasOverlay
+    translucentOverlay=translucentOverlay
+    clickOutsideToClose=clickOutsideToClose
+    destinationElementId=destinationElementId
+    overlayPosition=overlayPosition
+
+    tetherTarget=tetherTarget
+    legacyTarget=target
+    attachment=attachment
+    targetAttachment=targetAttachment
+    targetModifier=targetModifier
+    targetOffset=targetOffset
+    offset=offset
+    tetherClassPrefix=tetherClassPrefix
+    constraints=constraints
+    attachmentClass=attachmentClass
+    targetAttachmentClass=targetAttachmentClass
+
+    onClickOverlay=(action "onClickOverlay")
+    onClose=(action "onClose")
+}}
+    <div class="modal-dialog {{modalSize}} {{modal-class}}">
+        <div class="modal-content">
+            {{yield (hash
+                header=(component "modal-dialog/header" closable=closable onClose=(action "onClose"))
+                body=(component "modal-dialog/body")
+                footer=(component "modal-dialog/footer")
+                close=(action "onClose")
+            )}}
+        </div>
+    </div>
+{{/component}}

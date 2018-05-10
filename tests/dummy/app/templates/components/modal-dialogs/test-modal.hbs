@@ -1,0 +1,10 @@
+{{#modal-dialog size="sm" as |modal|}}
+Test
+  {{modal.header title="test"}}
+  {{#modal.body}}
+      <p>Test Modal</p>
+  {{/modal.body}}
+  {{#modal.footer}}
+    <a class="modal-btn" {{action modal.close}}>Close</a>
+  {{/modal.footer}}
+{{/modal-dialog}}

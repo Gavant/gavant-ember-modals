@@ -1,0 +1,9 @@
+{{#if title}}
+    <h4 class="modal-title">{{title}}</h4>
+{{/if}}
+{{yield}}
+{{#if closable}}
+    <button type="button" class="close" aria-label="Close" {{action onClose}}>
+        <span aria-hidden="true">&times;</span>
+    </button>
+{{/if}}
