@@ -1,7 +1,7 @@
 gavant-ember-modals
 ==============================================================================
 
-[Short description of the addon.]
+DISCLAIMER: This addon is not actively maintained for public use. Pull requests are welcome, but we do not guarantee responses to bug submissions or feature requests, so use at your own risk.
 
 Installation
 ------------------------------------------------------------------------------
