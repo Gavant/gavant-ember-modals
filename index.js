@@ -12,7 +12,8 @@ module.exports = {
     }, initialConfig);
     return updatedConfig;
   },
-  included: function() {
+  included: function(app) {
     this._super.included.apply(this, arguments);
+    app.import("node_modules/animate.css/animate.min.css");
   }
 };
