@@ -35,7 +35,7 @@ export default ModalDialog.extend({
     $('body').off('keyup.modal-dialog');
   },
 
-  _initEscListener() {
+  _initEscapeListener() {
     const closeOnEscapeKey = (ev) => {
       if (ev.keyCode === ESC_KEY && get(this, 'closeable')) {
         tryInvoke(this, 'onClose');
