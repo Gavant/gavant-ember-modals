@@ -19,6 +19,7 @@ export default ModalDialog.extend({
   translucentOverlay: true,
   hasOverlay: true,
   closable: true,
+  animationDuration: 1000,
 
   didInsertElement() {
     this._super(...arguments);
@@ -28,7 +29,7 @@ export default ModalDialog.extend({
   willDestroyElement() {
     this._super(...arguments);
     $('body').off('keyup.modal-dialog');
-    later($('body'), 'removeClass', 'modal-open', get(this, 'modal.animationDuration'));
+    later($('body'), 'removeClass', 'modal-open', get(this, 'animationDuration'));
   },
 
   _initEscapeListener() {

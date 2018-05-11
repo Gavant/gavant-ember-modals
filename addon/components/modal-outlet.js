@@ -26,11 +26,14 @@ const ModalOutlet = Component.extend({
 
   currentCmp: computed('currentData', function() {
       const data = this.get('currentData');
-      return !isNone(data) ? `modal-dialogs/${get(data, 'name')}` : null;
+      return !isNone(data) ? this.openModal(data) : null;
   }),
+  openModal(data) {
+    return `modal-dialogs/${get(data, 'name')}`;
+  },
 
   closeModal() {
-      return this.get('modal').close();
+      this.get('modal').close();
   },
 
   willDestroyElement() {

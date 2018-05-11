@@ -14,5 +14,8 @@ module.exports = {
   },
   included: function() {
     this._super.included.apply(this, arguments);
+  },
+  afterInstall: function() {
+    return this.addPackagesToProject('animate.css');
   }
 };

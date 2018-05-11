@@ -1,6 +1,6 @@
 {
   "name": "gavant-ember-modals",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "The default blueprint for ember-cli addons.",
   "keywords": [
     "ember-addon"
@@ -20,10 +20,11 @@
     "test:all": "ember try:each"
   },
   "dependencies": {
+    "animate.css": "^3.6.1",
     "ember-cli-babel": "^6.6.0",
     "ember-cli-htmlbars": "^2.0.1",
-    "ember-modal-dialog": "^2.2.0",
-    "ember-cli-sass": "^7.1.7"
+    "ember-cli-sass": "^7.1.7",
+    "ember-modal-dialog": "^3.0.0-beta.0"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",

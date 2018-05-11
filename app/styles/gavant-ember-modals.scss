@@ -1,2 +1,67 @@
 @import "ember-modal-dialog/ember-modal-structure";
-@import "ember-modal-dialog/ember-modal-appearance";
+
+$modal-z-index: 999999;
+
+.modal {
+    display: block;
+}
+
+.modal-backdrop {
+    position: fixed !important;
+    z-index: 1040 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background-color: rgba(0, 0, 0, .5);
+    &.animated {
+      animation-duration: 0.5s;
+    }
+}
+.modal-dialog,
+.ember-modal-dialog {
+    //needed to keep the modal in front of the backdrop while they are animating in
+    z-index: $modal-z-index !important;
+    display: block !important;
+    &.animated {
+      animation-duration: 0.5s;
+    }
+}
+
+.modal-backdrop {
+    &.fade {
+        transition: none;
+    }
+}
+
+.modal-content {
+    border: 0;
+    border-radius: 2px;
+    box-shadow:
+        0px 11px 15px -7px rgba(0, 0, 0, 0.2),
+        0px 24px 38px 3px rgba(0, 0, 0, 0.14),
+        0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+}
+
+.modal-header {
+    border-bottom: 0;
+    padding: 20px 20px 10px 20px;
+}
+
+.modal-body {
+    padding: 10px 20px;
+
+    &.errors-body {
+        .alert {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.modal-footer {
+    padding: 10px 20px 20px 20px;
+    border-top: 0;
+}
+
+.modal-btn {
+    text-transform: uppercase;
+    font-weight: bold
+}
