@@ -1,3 +1,7 @@
 {{#if currentCmp}}
-    {{component currentCmp data=currentData onClose=(action "close")}}
+    {{component
+      currentCmp
+      options=currentData
+      onClose=(action "close")
+    }}
 {{/if}}

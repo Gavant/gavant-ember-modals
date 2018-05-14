@@ -1,9 +1,11 @@
-{{#modal-dialog animation=animation onClose=onClose size="sm" as |modal|}}
+{{#modal-dialog onClose=onClose size="sm" as |modal|}}
   {{modal.header title="test"}}
   {{#modal.body}}
       <p>Test Modal</p>
+      {{day}}
   {{/modal.body}}
   {{#modal.footer}}
     <a class="modal-btn" {{action modal.close}}>Close</a>
+    <a class="modal-btn" {{action "save"}}>Save</a>
   {{/modal.footer}}
 {{/modal-dialog}}

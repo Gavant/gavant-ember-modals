@@ -24,7 +24,8 @@
     "ember-cli-babel": "^6.6.0",
     "ember-cli-htmlbars": "^2.0.1",
     "ember-cli-sass": "^7.1.7",
-    "ember-modal-dialog": "^3.0.0-beta.0"
+    "ember-modal-dialog": "^3.0.0-beta.0",
+    "ember-spread": "^5.0.1"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",

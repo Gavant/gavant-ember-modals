@@ -7,6 +7,9 @@ export default Controller.extend({
   actions: {
     openTestModal() {
       get(this, 'modal').open('test-modal');
+    },
+    save() {
+      console.log("In save");
     }
   }
 });

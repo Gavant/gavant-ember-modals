@@ -1,27 +1,29 @@
 import Component from '@ember/component';
 import layout from '../templates/components/modal-outlet';
 import { inject as service } from '@ember/service';
-import { computed, get } from '@ember/object';
-import { merge } from '@ember/polyfills';
-import { isNone, isEmpty } from '@ember/utils';
+import { computed, get, getWithDefault } from '@ember/object';
+import { isNone } from '@ember/utils';
+import { assert } from '@ember/debug';
 
 const ModalOutlet = Component.extend({
   layout,
   modal: service(),
   tagName: '',
 
-  currentData: computed('modals.[]', 'modal.current.{path,config}', function() {
+  currentData: computed('modal.current.{path,outlet,config}', function() {
       const path = this.get('modal.current.path');
-      const config = this.get('modal.current.config');
-      const modals = this.get('modals');
-      if (isEmpty(modals) && path) {
-        return merge({ name: path }, config);
-      } else if (path) {
-        const data = modals.findBy('name', path);
-        return !isNone(data) ? merge(merge({}, data), config) : merge({ name: path }, config);
-      } else {
-        return null;
+      const config = this.get('modal.current.config') || {};
+      const outlet = get(this, 'modal.current.outlet');
+      const actions = getWithDefault(config, 'actions', {});
+
+      if (path) {
+        if (outlet && outlet === get(this, 'name')) {
+          return Object.assign({ name: path }, config, actions);
+        } else if (!outlet && !get(this, 'name')) {
+          return Object.assign({ name: path }, config, actions);
+        }
       }
+      return null;
   }),
 
   currentCmp: computed('currentData', function() {
@@ -41,8 +43,19 @@ const ModalOutlet = Component.extend({
       if(!isNone(this.get('currentData'))) {
           this.closeModal();
       }
-
+      let name = getWithDefault(this, 'name', 'application')
+      let outlets = get(this, 'modal.outlets');
+      outlets.removeObject(name);
       this._super(...arguments);
+  },
+  //Prevent the user from accidentatly declaring outlets with the same name
+  didInsertElement() {
+    this._super(...arguments);
+    let name = getWithDefault(this, 'name', 'application');
+    let outlets = get(this, 'modal.outlets');
+    assert(`A modal outlet named ${name} has already been declared`, !outlets.includes(name));
+
+    outlets.pushObject(name);
   },
 
   actions: {
@@ -53,7 +66,7 @@ const ModalOutlet = Component.extend({
 });
 
 ModalOutlet.reopenClass({
-    positionalParams: ['modals']
+    positionalParams: ['name']
 });
 
 export default ModalOutlet;
