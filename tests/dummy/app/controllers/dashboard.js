@@ -6,7 +6,7 @@ export default Controller.extend({
   modal: service(),
   day: 2,
   save() {
-    console.log(get(this, 'day'));
+    //Do nothing
   },
   actions: {
     openTestModal() {
@@ -22,7 +22,7 @@ export default Controller.extend({
       });
     },
     save() {
-      console.log("In save");
+      //Do nothing
     }
   }
 });

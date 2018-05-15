@@ -9,7 +9,7 @@ export default Controller.extend({
       get(this, 'modal').open('test-modal');
     },
     save() {
-      console.log("In save");
+      //Do nothing
     }
   }
 });
