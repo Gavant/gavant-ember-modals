@@ -1,6 +1,6 @@
 @import "ember-modal-dialog/ember-modal-structure";
+@import 'gavant-ember-modals/variables';
 
-$modal-z-index: 999999;
 
 .modal {
     display: block;
@@ -11,9 +11,9 @@ $modal-z-index: 999999;
     z-index: 1040 !important;
     width: 100vw !important;
     height: 100vh !important;
-    background-color: rgba(0, 0, 0, .5);
+    background-color: $modal-dialog-backdrop-background-color;
     &.animated {
-      animation-duration: 0.5s;
+      animation-duration: $modal-dialog-animation-duration;
     }
 }
 .modal-dialog,
@@ -22,7 +22,7 @@ $modal-z-index: 999999;
     z-index: $modal-z-index !important;
     display: block !important;
     &.animated {
-      animation-duration: 0.5s;
+      animation-duration: $modal-dialog-animation-duration;
     }
 }
 
@@ -43,11 +43,11 @@ $modal-z-index: 999999;
 
 .modal-header {
     border-bottom: 0;
-    padding: 20px 20px 10px 20px;
+    padding: $modal-dialog-header-padding;
 }
 
 .modal-body {
-    padding: 10px 20px;
+    padding: $modal-dialog-body-padding;
 
     &.errors-body {
         .alert {
@@ -57,7 +57,7 @@ $modal-z-index: 999999;
 }
 
 .modal-footer {
-    padding: 10px 20px 20px 20px;
+    padding: $modal-dialog-footer-padding;
     border-top: 0;
 }
 
