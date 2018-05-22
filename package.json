@@ -1,17 +1,19 @@
 {
   "name": "gavant-ember-modals",
-  "version": "0.0.10",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.0.11",
+  "description": "Modal components built on ember-modal-dialog.",
+  "author": "Gavant Software, Inc.",
+  "repository": "https://github.com/Gavant/gavant-ember-modals",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "gavant",
+    "modal",
+    "dialog"
   ],
-  "license": "MIT",
-  "author": "",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "https://github.com/Gavant/gavant-ember-modals",
   "scripts": {
     "build": "ember build",
     "lint:js": "eslint ./*.js addon addon-test-support app blueprints config lib server test-support tests",

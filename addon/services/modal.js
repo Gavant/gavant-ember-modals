@@ -1,10 +1,11 @@
 import Service from '@ember/service';
+import Evented from '@ember/object/evented';
 import { set, get, setProperties } from '@ember/object';
 import { later } from '@ember/runloop';
 import { notEmpty } from '@ember/object/computed';
 import { A } from '@ember/array';
 
-export default Service.extend({
+export default Service.extend(Evented, {
     animationIn: 'zoomIn',
     animationOut: 'zoomOut',
     animationDuration: 500,
@@ -24,7 +25,9 @@ export default Service.extend({
     close() {
         set(this, 'animation', get(this, 'animationOut'));
         later(this, () => {
+            const modal = get(this, 'current');
             set(this, 'current', null);
+            this.trigger('closed', modal);
             this.processQueue();
         }, get(this, 'animationDuration'));
     },
@@ -34,8 +37,7 @@ export default Service.extend({
             return;
         }
         if (this.get('modals.length') === 0) {
-            get(this, 'eventBus').trigger('allModalsClosed');
-            return;
+            return this.trigger('allClosed');
         }
         this.popFromQueue();
     },
@@ -44,6 +46,7 @@ export default Service.extend({
         const modal = this.get('modals').shiftObject();
         set(this, 'animation', get(this, 'animationIn'));
         set(this, 'current', modal);
+        this.trigger('opened', modal);
     },
 
     init (){
