@@ -16,6 +16,7 @@ export default ModalDialog.extend({
         return `modal-backdrop animated ${get(this, 'modal.animation') && get(this, 'modal.animation').includes('In') ? 'fadeIn' : 'fadeOut' }`;
     }),
     overlayPosition: 'sibling',
+    targetAttachment: null,
     translucentOverlay: true,
     hasOverlay: true,
     closable: true,
