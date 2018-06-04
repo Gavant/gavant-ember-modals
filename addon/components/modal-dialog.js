@@ -24,16 +24,25 @@ export default ModalDialog.extend({
     didInsertElement() {
         this._super(...arguments);
         $(document).on('keyup.modal-dialog', bind(this, '_escapeListener'));
+        $(document).on('click.modal-dialog', '.modal', bind(this, '_modalClickListener'));
         $('body').addClass('modal-open');
     },
     willDestroyElement() {
         this._super(...arguments);
-        $(document).off('keyup.modal-dialog');
+        $(document).off('.modal-dialog');
         later($('body'), 'removeClass', 'modal-open', get(this, 'modal.animationDuration'));
     },
     _escapeListener(event) {
         if (event.keyCode === ESC_KEY && get(this, 'closable')) {
             tryInvoke(this, 'onClose');
+        }
+    },
+    _modalClickListener(event) {
+        //clicks directly on the modal container should behave as clicks on the overlay backdrop
+        //this is necessary because bootstrap's .modal container stretches to cover the entire viewport
+        //and has a higher z-index ordering than the overlay backdrop
+        if($(event.target).is('.modal')) {
+            this.actions.onClickOverlay.apply(this, [event]);
         }
     }
 });
