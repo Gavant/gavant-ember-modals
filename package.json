@@ -1,6 +1,6 @@
 {
   "name": "gavant-ember-modals",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Modal components built on ember-modal-dialog.",
   "author": "Gavant Software, Inc.",
   "repository": "https://github.com/Gavant/gavant-ember-modals",
