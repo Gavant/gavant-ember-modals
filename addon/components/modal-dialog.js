@@ -10,10 +10,14 @@ const ESC_KEY = 27;
 
 export default ModalDialog.extend({
     modal: service(),
+    size: 'md',
     layout,
     containerClass: 'modal fade show',
     overlayClass: computed('modal.animation', function() {
         return `modal-backdrop animated ${get(this, 'modal.animation') && get(this, 'modal.animation').includes('In') ? 'fadeIn' : 'fadeOut' }`;
+    }),
+    modalSize: computed('size', function() {
+        return `modal-${get(this, 'size')}`;
     }),
     overlayPosition: 'sibling',
     translucentOverlay: true,
