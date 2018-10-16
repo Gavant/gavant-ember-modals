@@ -24,7 +24,7 @@ export default Service.extend(Evented, {
     },
 
     close() {
-        return Promise(resolve => {
+        return Promise(function(resolve) {
             set(this, 'animation', get(this, 'animationOut'));
             later(this, () => {
                 const modal = get(this, 'current');
