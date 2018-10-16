@@ -35,7 +35,7 @@ const ModalOutlet = Component.extend({
     },
 
     closeModal() {
-        this.get('modal').close();
+        return this.get('modal').close();
     },
 
     willDestroyElement() {
@@ -61,7 +61,7 @@ const ModalOutlet = Component.extend({
 
     actions: {
         close() {
-            this.closeModal();
+            return this.closeModal();
         }
     }
 });
