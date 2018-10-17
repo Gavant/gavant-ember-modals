@@ -4,6 +4,7 @@ import { set, get, setProperties } from '@ember/object';
 import { later } from '@ember/runloop';
 import { notEmpty } from '@ember/object/computed';
 import { A } from '@ember/array';
+import { Promise } from 'rsvp';
 
 export default Service.extend(Evented, {
     animationIn: 'zoomIn',
@@ -23,13 +24,17 @@ export default Service.extend(Evented, {
     },
 
     close() {
-        set(this, 'animation', get(this, 'animationOut'));
-        later(this, () => {
-            const modal = get(this, 'current');
-            set(this, 'current', null);
-            this.trigger('closed', modal);
-            this.processQueue();
-        }, get(this, 'animationDuration'));
+        return new Promise((resolve) => {
+            set(this, 'animation', get(this, 'animationOut'));
+            later(this, () => {
+                const modal = get(this, 'current');
+                //Set current modal to null, trigger closed event and resolve close promise
+                set(this, 'current', null);
+                this.trigger('closed', modal);
+                resolve();
+                this.processQueue();
+            }, get(this, 'animationDuration'));
+        });
     },
 
     processQueue() {
