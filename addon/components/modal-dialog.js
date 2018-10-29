@@ -45,7 +45,7 @@ export default ModalDialog.extend({
         //clicks directly on the modal container should behave as clicks on the overlay backdrop
         //this is necessary because bootstrap's .modal container stretches to cover the entire viewport
         //and has a higher z-index ordering than the overlay backdrop
-        if($(event.target).is('.modal')) {
+        if($(event.target).is('.modal') && get(this, 'closable')) {
             this.actions.onClickOverlay.apply(this, [event]);
         }
     }
