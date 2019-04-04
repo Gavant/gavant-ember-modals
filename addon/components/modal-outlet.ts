@@ -17,18 +17,19 @@ export default class ModalOutlet extends Component {
 
     @computed('modal.current.{path,outlet,config}')
     get currentData() {
-        const path = this.modal.current.path;
-        const config = this.modal.current.config || {};
-        const outlet = this.modal.current.outlet;
-        const actions = getWithDefault(config, 'actions', {});
+        if (this.modal.current) {
+            const path = this.modal.current.path;
+            const config = this.modal.current.config || {};
+            const outlet = this.modal.current.outlet;
+            const actions = getWithDefault(config, 'actions', {});
 
-        if (path) {
-            if (outlet && outlet === this.name) {
-                return Object.assign({ name: path }, config, actions);
-            } else if (!outlet && !this.name) {
-                return Object.assign({ name: path }, config, actions);
+            if (path) {
+                if (outlet && outlet === this.name) {
+                    return Object.assign({ name: path }, config, actions);
+                }
             }
         }
+
         return null;
     }
 
@@ -47,12 +48,12 @@ export default class ModalOutlet extends Component {
     }
 
     didInsertElement() {
+        super.didInsertElement();
         let name = this.name;
         let outlets = this.modal.outlets;
         assert(`A modal outlet named ${name} has already been declared`, !outlets.includes(name));
 
         outlets.pushObject(name);
-        super.didInsertElement();
     }
 
     willDestroyElement() {

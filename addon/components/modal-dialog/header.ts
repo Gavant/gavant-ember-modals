@@ -1,8 +1,9 @@
 import Component from '@ember/component';
 // @ts-ignore: Ignore import of compiled template
-import layout from '../../templates/components/modal-dialog/header';
+import template from '../../templates/components/modal-dialog/header';
+import { layout } from '@ember-decorators/component';
 
+@layout(template)
 export default class ModalDialogHeader extends Component {
-    layout = layout;
     classNames = ['modal-header'];
 };

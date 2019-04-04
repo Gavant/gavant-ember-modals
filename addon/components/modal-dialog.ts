@@ -1,19 +1,20 @@
-import Component from '@ember/component';
+import ModalDialog from 'ember-modal-dialog/components/modal-dialog';
 // @ts-ignore: Ignore import of compiled template
-import layout from '../templates/components/modal-dialog';
+import template from '../templates/components/modal-dialog';
 import { inject as service } from '@ember-decorators/service';
 import Modal from 'gavant-ember-modals/services/modal';
 import { computed } from '@ember-decorators/object';
 import { later, bind } from '@ember/runloop';
 import { setProperties } from '@ember/object';
 import { tryInvoke } from '@ember/utils';
+import { layout } from '@ember-decorators/component';
 
 const ESC_KEY = 27;
 
-export default class ModalDialog extends Component {
+@layout(template)
+export default class ModalDialogClass extends ModalDialog {
     @service modal!: Modal;
 
-    layout = layout;
     size = 'md';
     containerClass = 'modal fade show';
     overlayPosition = 'sibling';
@@ -45,7 +46,7 @@ export default class ModalDialog extends Component {
     }
 
     willDestroyElement() {
-        this._super(...arguments);
+        super.willDestroyElement();
         document.removeEventListener('keyup', this.keyupHandler);
         document.removeEventListener('click', this.clickHandler);
         later(document.body.classList, 'remove', 'modal-open', this.modal.animationDuration);
@@ -63,7 +64,8 @@ export default class ModalDialog extends Component {
         //and has a higher z-index ordering than the overlay backdrop
         const target = event.target as HTMLElement;
         if(target && target.matches('.modal') && this.closable) {
-          this.actions.onClickOverlay.apply(this, [event]);
+            event.preventDefault();
+            tryInvoke(this, 'onClose');
         }
     }
-};
+}
