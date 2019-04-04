@@ -58,6 +58,11 @@ export default class ModalDialogClass extends ModalDialog {
         }
     }
 
+    /**
+    * Document Click Event Listener
+    * If the user clicked on the element with the `modal` class and the modal can be closed [[closable]] != false then `onClose` will be invoked
+    * @param event - The click event
+    */
     onDocumentClick(event: MouseEvent) {
         //clicks directly on the modal container should behave as clicks on the overlay backdrop
         //this is necessary because bootstrap's .modal container stretches to cover the entire viewport

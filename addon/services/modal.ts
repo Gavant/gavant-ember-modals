@@ -9,6 +9,13 @@ interface ModalConfig {
     outlet: string | undefined;
 }
 
+/**
+ * Class that handles opening and closing of modals
+ *
+ * @class modal
+ * @extends Ember.Service
+ */
+
 export default class Modal extends Service.extend(Evented) {
     animation: string | undefined;
     animationIn: string = 'zoomIn';
@@ -22,6 +29,7 @@ export default class Modal extends Service.extend(Evented) {
 
     /**
     * Opens a modal
+    *
     * @param path - The path to the modal component.
     * The addon assumes you have put the modal component inside a directory called `modal-dialogs`.
     * This means that all you need to pass is the path inside that folder seperated by slashes i.e. `accounts/new`
