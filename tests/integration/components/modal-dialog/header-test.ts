@@ -12,7 +12,7 @@ module('Integration | Component | modal-dialog/header', function(hooks) {
 
     await render(hbs`{{modal-dialog/header}}`);
 
-    assert.dom(this.element).hasText('');
+    assert.equal(this.element.textContent.trim(), '');
 
     // Template block usage:
     await render(hbs`
@@ -21,6 +21,6 @@ module('Integration | Component | modal-dialog/header', function(hooks) {
       {{/modal-dialog/header}}
     `);
 
-    assert.dom(this.element).hasText('template block text');
+    assert.equal(this.element.textContent.trim(), 'template block text');
   });
 });

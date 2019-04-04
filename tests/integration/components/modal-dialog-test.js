@@ -12,6 +12,6 @@ module('Integration | Component | modal-dialog', function(hooks) {
 
     await render(hbs`{{modal-dialog}}`);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.dom(this.element).hasText('');
   });
 });

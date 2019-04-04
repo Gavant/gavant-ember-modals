@@ -12,6 +12,6 @@ module('Integration | Component | modal-outlet', function(hooks) {
 
     await render(hbs`{{modal-outlet}}`);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.dom(this.element).hasText('');
   });
 });
