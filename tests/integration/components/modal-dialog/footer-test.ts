@@ -11,8 +11,9 @@ module('Integration | Component | modal-dialog/footer', function(hooks) {
     // Handle any actions with this.set('myAction', function(val) { ... });
 
     await render(hbs`{{modal-dialog/footer}}`);
+    let element = this.element.textContent;
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.equal(element && element.trim(), '');
 
     // Template block usage:
     await render(hbs`
@@ -20,7 +21,8 @@ module('Integration | Component | modal-dialog/footer', function(hooks) {
         template block text
       {{/modal-dialog/footer}}
     `);
+    element = this.element.textContent;
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.equal(element && element.trim(), 'template block text');
   });
 });
