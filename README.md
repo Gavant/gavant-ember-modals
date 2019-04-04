@@ -3,6 +3,14 @@ gavant-ember-modals
 
 DISCLAIMER: This addon is not actively maintained for public use. Pull requests are welcome, but we do not guarantee responses to bug submissions or feature requests, so use at your own risk.
 
+
+Compatibility
+------------------------------------------------------------------------------
+
+* Ember.js v2.18 or above
+* Ember CLI v2.13 or above
+
+
 Installation
 ------------------------------------------------------------------------------
 
@@ -131,6 +139,7 @@ then in the modal you can just call `await tryInvoke(this, 'doSomething');`
 Contributing
 ------------------------------------------------------------------------------
 
+<<<<<<< HEAD
 ### Installation
 
 * `git clone <repository-url>`
@@ -152,8 +161,10 @@ Contributing
 
 * `ember serve`
 * Visit the dummy application at [http://localhost:4200](http://localhost:4200).
+=======
+See the [Contributing](CONTRIBUTING.md) guide for details.
+>>>>>>> 61bd70b... message
 
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
 
 License
 ------------------------------------------------------------------------------
