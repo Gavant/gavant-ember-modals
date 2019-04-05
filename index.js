@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  name: 'gavant-ember-modals',
+  name: require('./package').name,
   config: function(environment, appConfig) {
     let initialConfig = Object.assign({}, appConfig);
     let updatedConfig = this.addons.reduce((config, addon) => {
