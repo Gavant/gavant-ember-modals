@@ -15,26 +15,62 @@ const ESC_KEY = 27;
 export default class ModalDialogClass extends ModalDialog {
     @service modal!: Modal;
 
+    /**
+    * @default md
+    */
     size = 'md';
+
+    /**
+    * @default modal fade show
+    */
     containerClass = 'modal fade show';
+
+    /**
+    * @default sibling
+    */
     overlayPosition = 'sibling';
     targetAttachment = null;
+
+    /**
+    * @default true
+    */
     translucentOverlay = true;
+
+    /**
+    * @default true
+    */
     hasOverlay = true;
+
+    /**
+    * @default true
+    */
     closable = true;
     keyupHandler: any;
     clickHandler: any;
 
+    /**
+    * Computed property that watches for changes on `modal.animation`
+    *
+    * @returns Overlay class based on animation state
+    */
     @computed('modal.animation')
     get overlayClass() {
         return `modal-backdrop animated ${this.modal.animation && this.modal.animation.includes('In') ? 'fadeIn' : 'fadeOut' }`;
     }
 
+    /**
+    * Computed property that watches for changes on `size`
+    *
+    * @returns Class based on size
+    */
     @computed('size')
-    get modalSize() {
+    get modalSize(): string {
         return `modal-${this.size}`;
     }
 
+    /**
+    * Sets up event listeners for `keyup` and `click`, as well as adds a `modal-open` class to the body
+    */
     didInsertElement() {
         super.didInsertElement();
         const keyupHandler = bind(this, 'onDocumentKeyup');
@@ -45,6 +81,9 @@ export default class ModalDialogClass extends ModalDialog {
         setProperties(this, { keyupHandler, clickHandler });
     }
 
+    /**
+    * Tears down event listeners for `keyup` and `click`, as well as removes the `modal-open` class from the body after the `animationDuration`
+    */
     willDestroyElement() {
         super.willDestroyElement();
         document.removeEventListener('keyup', this.keyupHandler);
@@ -52,14 +91,21 @@ export default class ModalDialogClass extends ModalDialog {
         later(document.body.classList, 'remove', 'modal-open', this.modal.animationDuration);
     }
 
+    /**
+    * Document KeyUp Event Listener
+    *
+    * It listens for any KeyUp on the document. If escape was pressed close the modal
+    * @param event - The keyboard event
+    */
     onDocumentKeyup(event: KeyboardEvent) {
         if (event.keyCode === ESC_KEY && this.closable) {
-          tryInvoke(this, 'onClose');
+            tryInvoke(this, 'onClose');
         }
     }
 
     /**
     * Document Click Event Listener
+    *
     * If the user clicked on the element with the `modal` class and the modal can be closed [[closable]] != false then `onClose` will be invoked
     * @param event - The click event
     */

@@ -20,8 +20,18 @@ export default class Modal extends Service.extend(Evented) {
     animation: string | undefined;
     animationIn: string = 'zoomIn';
     animationOut: string = 'zoomOut';
+    /**
+    * Animation duration
+    * @default 500ms
+    */
     animationDuration: number = 500;
+    /**
+    * The currently opened modal
+    */
     current: any;
+    /**
+    * The modal queue. When you call open a modal it gets added into this queue
+    */
     modals = A();
     outlets = A();
 
@@ -48,8 +58,11 @@ export default class Modal extends Service.extend(Evented) {
 
     /**
     * Closes the currently opened modal, and then calls `processQueue` which may open a different modal if there is one in the queue
+    *
+    * @method close
+    * @returns Promise which resolves after `animationDuration`
     */
-    close() {
+    close(): Promise<any> {
         return new Promise((resolve) => {
             set(this, 'animation', this.animationOut);
             later(this, () => {
