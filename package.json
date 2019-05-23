@@ -1,5 +1,5 @@
 {
-  "name": "gavant-ember-modals",
+  "name": "@gavant/ember-modals",
   "version": "0.3.2",
   "description": "Modal components built on ember-modal-dialog.",
   "keywords": [
