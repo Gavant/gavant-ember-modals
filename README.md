@@ -15,7 +15,7 @@ Installation
 ------------------------------------------------------------------------------
 
 ```
-ember install gavant-ember-modals
+ember install @gavant/ember-modals
 ```
 
 
