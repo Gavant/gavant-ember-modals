@@ -4,7 +4,7 @@ import template from '../templates/components/modal-outlet';
 import { inject as service } from '@ember-decorators/service';
 import { action, computed } from '@ember-decorators/object';
 import { tagName, layout } from '@ember-decorators/component';
-import Modal from 'gavant-ember-modals/services/modal';
+import Modal from '@gavant/ember-modals/services/modal';
 import { getWithDefault } from '@ember/object';
 import { assert } from '@ember/debug';
 import { isNone } from '@ember/utils';

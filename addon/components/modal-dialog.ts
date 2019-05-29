@@ -2,7 +2,7 @@ import ModalDialog from 'ember-modal-dialog/components/modal-dialog';
 // @ts-ignore: Ignore import of compiled template
 import template from '../templates/components/modal-dialog';
 import { inject as service } from '@ember-decorators/service';
-import Modal from 'gavant-ember-modals/services/modal';
+import Modal from '@gavant/ember-modals/services/modal';
 import { computed } from '@ember-decorators/object';
 import { later, bind } from '@ember/runloop';
 import { setProperties } from '@ember/object';

@@ -1,1 +1,1 @@
-export { default } from 'gavant-ember-modals/components/modal-outlet';
+export { default } from '@gavant/ember-modals/components/modal-outlet';

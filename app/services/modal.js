@@ -1,1 +1,1 @@
-export { default } from 'gavant-ember-modals/services/modal';
+export { default } from '@gavant/ember-modals/services/modal';

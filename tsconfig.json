@@ -28,16 +28,16 @@
         "tests/dummy/app/*",
         "app/*"
       ],
-      "gavant-ember-modals": [
+      "@gavant/ember-modals": [
         "addon"
       ],
-      "gavant-ember-modals/*": [
+      "@gavant/ember-modals/*": [
         "addon/*"
       ],
-      "gavant-ember-modals/test-support": [
+      "@gavant/ember-modals/test-support": [
         "addon-test-support"
       ],
-      "gavant-ember-modals/test-support/*": [
+      "@gavant/ember-modals/test-support/*": [
         "addon-test-support/*"
       ],
       "*": [
