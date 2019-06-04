@@ -1,16 +1,19 @@
-Rendering Test Modal
 {{#modal-dialog onClose=onClose size="sm" as |modal|}}
-  {{modal.header title="test"}}
-  {{#modal.body}}
-      <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur placerat sem non orci posuere, eget porta augue accumsan. Integer eget elementum dolor. Mauris id augue eget nibh molestie euismod et id tortor. Fusce at massa purus. Nam vel metus cursus turpis finibus iaculis sed sit amet justo. Integer luctus, sem et tempor pharetra, mi sem aliquet erat, at fermentum orci magna eu augue. Quisque eget nunc velit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas ut lorem vitae nisi ultrices finibus. Vestibulum facilisis erat in nisi mattis, facilisis posuere ex euismod. Morbi aliquam rutrum eros. In diam orci, sollicitudin non velit vitae, blandit facilisis sapien. Praesent placerat nec turpis et pretium. Cras eu est a urna porttitor mattis. Aliquam iaculis libero massa, eget congue metus sodales a. Donec vestibulum dapibus finibus.
+    {{modal.header title="test"}}
+    {{#modal.body}}
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur placerat sem non orci posuere, eget porta augue accumsan. Integer eget elementum dolor. Mauris id augue eget nibh molestie euismod et id tortor. Fusce at massa purus. Nam vel metus cursus turpis finibus iaculis sed sit amet justo. Integer luctus, sem et tempor pharetra, mi sem aliquet erat, at fermentum orci magna eu augue. Quisque eget nunc velit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas ut lorem vitae nisi ultrices finibus. Vestibulum facilisis erat in nisi mattis, facilisis posuere ex euismod. Morbi aliquam rutrum eros. In diam orci, sollicitudin non velit vitae, blandit facilisis sapien. Praesent placerat nec turpis et pretium. Cras eu est a urna porttitor mattis. Aliquam iaculis libero massa, eget congue metus sodales a. Donec vestibulum dapibus finibus.
 
 Nullam eget dui ac dolor pretium convallis. Fusce sit amet dignissim nunc, ut varius elit. Nullam facilisis id neque vel vehicula. Phasellus sed sem ac diam lacinia accumsan. Interdum et malesuada fames ac ante ipsum primis in faucibus. In blandit lorem a consequat posuere. Etiam tristique neque at massa porta dictum. Etiam sed lorem cursus, egestas nisi id, molestie felis. Phasellus ac ligula ex. Quisque vehicula neque eget tellus feugiat placerat. Cras ultricies rutrum magna a tincidunt. Duis accumsan velit a ipsum efficitur, sit amet maximus dui venenatis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum consectetur, est id aliquam lacinia, felis nisl accumsan est, a commodo massa ipsum ut ligula. Fusce ac varius magna.
-      </p>
-      {{day}}
-  {{/modal.body}}
-  {{#modal.footer}}
-    <button class="btn btn-outline-secondary" {{action modal.close}}>Close</button>
-    <button class="btn btn-primary" {{action "save"}}>Save</button>
-  {{/modal.footer}}
+        </p>
+        {{day}}
+    {{/modal.body}}
+    {{#modal.footer}}
+        <button class="btn btn-outline-secondary" {{action modal.close}}>
+            Close
+        </button>
+        <button class="btn btn-primary" {{action "save"}}>
+            Save
+        </button>
+    {{/modal.footer}}
 {{/modal-dialog}}

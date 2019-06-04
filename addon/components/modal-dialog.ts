@@ -16,17 +16,17 @@ export default class ModalDialogClass extends ModalDialog {
     @service modal!: Modal;
 
     /**
-    * @default md
+    * @default 'md'
     */
     size = 'md';
 
     /**
-    * @default modal fade show
+    * @default 'modal fade show'
     */
     containerClass = 'modal fade show';
 
     /**
-    * @default sibling
+    * @default 'sibling'
     */
     overlayPosition = 'sibling';
     targetAttachment = null;

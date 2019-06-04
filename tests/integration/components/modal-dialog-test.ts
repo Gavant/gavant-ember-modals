@@ -14,16 +14,5 @@ module('Integration | Component | modal-dialog', function(hooks) {
     let element = this.element.textContent;
 
     assert.equal(element && element.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      {{#modal-dialog}}
-        template block text
-      {{/modal-dialog}}
-    `);
-
-    element = this.element.textContent;
-
-    assert.equal(element && element.trim(), 'template block text');
   });
 });

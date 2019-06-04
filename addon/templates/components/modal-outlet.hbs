@@ -1,8 +1,3 @@
 {{#if currentCmp}}
-    Current Component Exists: {{currentCmp}}
-    {{component
-        currentCmp
-        options=currentData
-        onClose=(action "close")
-    }}
+    {{component currentCmp options=currentData onClose=(action "close")}}
 {{/if}}

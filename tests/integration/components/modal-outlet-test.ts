@@ -14,15 +14,5 @@ module('Integration | Component | modal-outlet', function(hooks) {
     let element = this.element.textContent;
 
     assert.equal(element && element.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      {{#modal-outlet}}
-        template block text
-      {{/modal-outlet}}
-    `);
-    element = this.element.textContent;
-
-    assert.equal(element && element.trim(), 'template block text');
   });
 });

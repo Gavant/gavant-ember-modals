@@ -1,5 +1,5 @@
-Render modal dialog
-{{#component modalDialogComponentName
+{{#component
+    modalDialogComponentName
     wrapperClass=wrapperClass
     wrapperClassNames=wrapperClassNames
     overlayClass=overlayClass
@@ -11,7 +11,6 @@ Render modal dialog
     clickOutsideToClose=clickOutsideToClose
     destinationElementId=destinationElementId
     overlayPosition=overlayPosition
-
     tetherTarget=tetherTarget
     legacyTarget=target
     attachment=attachment
@@ -23,18 +22,30 @@ Render modal dialog
     constraints=constraints
     attachmentClass=attachmentClass
     targetAttachmentClass=targetAttachmentClass
-
     onClickOverlay=(action "onClickOverlay")
     onClose=(action "onClose")
 }}
-    <div class="modal-dialog {{modalSize}} {{modal-class}} animated {{modal.animation}}">
+    <div
+        class="modal-dialog
+            {{modalSize}}
+
+            {{modal-class}}
+             animated
+            {{modal.animation}}"
+    >
         <div class="modal-content">
-            {{yield (hash
-                header=(component "modal-dialog/header" closable=closable onClose=(action "onClose"))
-                body=(component "modal-dialog/body")
-                footer=(component "modal-dialog/footer")
-                close=(action "onClose")
-            )}}
+            {{yield
+                (hash
+                    header=(component
+                        "modal-dialog/header"
+                        closable=closable
+                        onClose=(action "onClose")
+                    )
+                    body=(component "modal-dialog/body")
+                    footer=(component "modal-dialog/footer")
+                    close=(action "onClose")
+                )
+            }}
         </div>
     </div>
 {{/component}}
