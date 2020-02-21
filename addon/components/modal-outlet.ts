@@ -1,31 +1,30 @@
 import Component from '@ember/component';
 // @ts-ignore: Ignore import of compiled template
-import template from '../templates/components/modal-outlet';
-import { inject as service } from '@ember-decorators/service';
-import { action, computed } from '@ember-decorators/object';
-import { tagName, layout } from '@ember-decorators/component';
-import Modal from '@gavant/ember-modals/services/modal';
+import layout from '../templates/components/modal-outlet';
+import { inject as service } from '@ember/service';
+import { action, computed } from '@ember/object';
 import { getWithDefault } from '@ember/object';
 import { assert } from '@ember/debug';
 import { isNone } from '@ember/utils';
+import Modal from '@gavant/ember-modals/services/modal';
 
 interface currentModalData {
     name: string;
     config: object;
-    actions: object
+    actions: object;
 }
 
-@tagName('')
-@layout(template)
 export default class ModalOutlet extends Component {
+    layout = layout;
+    tagName = '';
     @service modal!: Modal;
     name: string = 'application';
 
     /**
-    * Computed property that gets the current modal data from the `modal` service
-    *
-    * @param modal.current - The Modal services current modal
-    */
+     * Computed property that gets the current modal data from the `modal` service
+     *
+     * @param modal.current - The Modal services current modal
+     */
     @computed('modal.current.{path,outlet,config}')
     get currentData(): currentModalData | null {
         if (this.modal.current) {
@@ -45,10 +44,10 @@ export default class ModalOutlet extends Component {
     }
 
     /**
-    * Computed property that gets the current modal component name
-    *
-    * @param currentData - The `currentData` computed property from above
-    */
+     * Computed property that gets the current modal component name
+     *
+     * @param currentData - The `currentData` computed property from above
+     */
     @computed('currentData')
     get currentCmp(): string | null {
         const data = this.currentData;
@@ -64,8 +63,8 @@ export default class ModalOutlet extends Component {
     }
 
     /**
-    * Gets the outlet name, and makes sure there isn't already another outlet with the same name.
-    */
+     * Gets the outlet name, and makes sure there isn't already another outlet with the same name.
+     */
     didInsertElement() {
         super.didInsertElement();
         let name = this.name;
@@ -76,11 +75,11 @@ export default class ModalOutlet extends Component {
     }
 
     /**
-    * Remove the outlet from the outlets array in the modal service
-    */
+     * Remove the outlet from the outlets array in the modal service
+     */
     willDestroyElement() {
         //if this outlet is currently showing a modal, tell the service to close it
-        if(!isNone(this.currentData)) {
+        if (!isNone(this.currentData)) {
             this.closeModal();
         }
         let name = this.name;
@@ -93,4 +92,4 @@ export default class ModalOutlet extends Component {
     close() {
         return this.closeModal();
     }
-};
+}
