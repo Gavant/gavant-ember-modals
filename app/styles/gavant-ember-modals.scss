@@ -1,6 +1,5 @@
 @import "ember-modal-dialog/ember-modal-structure";
-@import 'gavant-ember-modals/variables';
-
+@import "gavant-ember-modals/variables";
 
 .modal {
     display: block;
@@ -17,7 +16,7 @@
     height: auto !important;
     background-color: $modal-dialog-backdrop-background-color;
     &.animated {
-      animation-duration: $modal-dialog-animation-duration;
+        animation-duration: $modal-dialog-animation-duration;
     }
 }
 .modal-dialog,
@@ -26,7 +25,7 @@
     z-index: $modal-dialog-z-index !important;
     display: block !important;
     &.animated {
-      animation-duration: $modal-dialog-animation-duration;
+        animation-duration: $modal-dialog-animation-duration;
     }
 }
 

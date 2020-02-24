@@ -7,13 +7,13 @@ export default Route.extend({
 
     setupController() {
         this._super(...arguments);
-        
+
         //testing modal service events
         get(this, 'modal').on('opened', (modal) => {
             // eslint-disable-next-line no-console
             console.log('modal opened!', modal);
 
-            get(this, 'modal').one('closed', (modal) => {
+            get(this, 'modal').on('closed', (modal) => {
                 // eslint-disable-next-line no-console
                 console.log('modal closed!', modal);
             });
