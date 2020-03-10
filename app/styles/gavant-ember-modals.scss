@@ -1,5 +1,5 @@
-@import "ember-modal-dialog/ember-modal-structure";
-@import "gavant-ember-modals/variables";
+@import 'ember-modal-dialog/ember-modal-structure';
+@import 'gavant-ember-modals/variables';
 
 .modal {
     display: block;
@@ -10,7 +10,7 @@
     top: 0 !important;
     left: 0 !important;
     bottom: 0 !important;
-    left: 0 !important;
+    right: 0 !important;
     z-index: $modal-dialog-backdrop-z-index !important;
     width: auto !important;
     height: auto !important;

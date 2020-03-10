@@ -17,18 +17,31 @@ interface ModalConfig {
  */
 
 export default class Modal extends Service.extend(Evented) {
+    /**
+     * Default modal config values used for open()
+     */
+    defaultModalConfig: ModalConfig = {
+        outlet: 'application'
+    };
+
+    /**
+     * Animation CSS classes
+     */
     animation: string | undefined;
     animationIn: string = 'zoomIn';
     animationOut: string = 'zoomOut';
+
     /**
      * Animation duration
      * @default 500ms
      */
     animationDuration: number = 500;
+
     /**
      * The currently opened modal
      */
     current: any;
+
     /**
      * The modal queue. When you call open a modal it gets added into this queue
      */
@@ -45,8 +58,9 @@ export default class Modal extends Service.extend(Evented) {
      * This means that all you need to pass is the path inside that folder seperated by slashes i.e. `accounts/new`
      * @param config - The config you want to pass to the modal. This should be an object, with any number of attributes inside
      */
-    open(path: string, config: ModalConfig = { outlet: 'application' }) {
-        let outlet = config.outlet;
+    open(path: string, modalConfig: object = {}) {
+        const config = { ...this.defaultModalConfig, ...modalConfig };
+        const outlet = config.outlet;
         delete config.outlet;
         this.modals.pushObject({
             path,
