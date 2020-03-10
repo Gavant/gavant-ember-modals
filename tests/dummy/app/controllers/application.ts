@@ -8,11 +8,17 @@ export default class Application extends Controller {
 
     @action
     openTestModal() {
-        this.modal.open('test-modal');
+        this.modal.open('test-modal', {
+            foo: 'bar',
+            actions: {
+                save: this.save
+            }
+        });
     }
+
     @action
     save() {
-        //Do nothing
+        console.log('SAVE!');
     }
 }
 
