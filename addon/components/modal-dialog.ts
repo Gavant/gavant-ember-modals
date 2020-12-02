@@ -1,12 +1,13 @@
+import { computed, setProperties } from '@ember/object';
+import { bind, later } from '@ember/runloop';
+import { inject as service } from '@ember/service';
+import { tryInvoke } from '@ember/utils';
+
+import Modal from '@gavant/ember-modals/services/modal';
 import ModalDialog from 'ember-modal-dialog/components/modal-dialog';
+
 // @ts-ignore: Ignore import of compiled template
 import layout from '../templates/components/modal-dialog';
-import { inject as service } from '@ember/service';
-import Modal from '@gavant/ember-modals/services/modal';
-import { computed } from '@ember/object';
-import { later, bind } from '@ember/runloop';
-import { setProperties } from '@ember/object';
-import { tryInvoke } from '@ember/utils';
 
 const ESC_KEY = 27;
 
@@ -44,6 +45,12 @@ export default class ModalDialogClass extends ModalDialog {
      * @default true
      */
     closable = true;
+
+    /**
+     * @default true
+     */
+    clickOutsideToClose = true;
+
     keyupHandler: any;
     clickHandler: any;
 
@@ -115,7 +122,7 @@ export default class ModalDialogClass extends ModalDialog {
         //this is necessary because bootstrap's .modal container stretches to cover the entire viewport
         //and has a higher z-index ordering than the overlay backdrop
         const target = event.target as HTMLElement;
-        if (target && target.matches('.modal') && this.closable) {
+        if (target && target.matches('.modal') && this.closable && this.clickOutsideToClose) {
             event.preventDefault();
             tryInvoke(this, 'onClose');
         }
