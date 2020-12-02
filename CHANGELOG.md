@@ -1,8 +1,10 @@
 # Changelog
 
-## v1.0.2
+## v1.0.3
 
-### Pull Requests
+-   [#20](https://github.com/Gavant/gavant-ember-modals/pull/20) Add click outside to close property _by [Gavant](https://github.com/Gavant)_
+
+## v1.0.2
 
 -   [#15](https://github.com/Gavant/gavant-ember-modals/pull/15) Backdrop styles and modal configs issues _by [Gavant/bug](https://github.com/Gavant/bug)_
 
