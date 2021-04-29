@@ -15,14 +15,6 @@ export default class Application extends Controller {
                 save: this.save
             }
         });
-        this.modal.close();
-
-        this.modal.open('test-modal', {
-            foo: 'bar',
-            actions: {
-                save: this.save
-            }
-        });
     }
 
     @action
