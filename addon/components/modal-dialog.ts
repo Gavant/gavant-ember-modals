@@ -3,8 +3,9 @@ import { bind, later } from '@ember/runloop';
 import { inject as service } from '@ember/service';
 import { tryInvoke } from '@ember/utils';
 
-import Modal from '@gavant/ember-modals/services/modal';
 import ModalDialog from 'ember-modal-dialog/components/modal-dialog';
+
+import Modal from '@gavant/ember-modals/services/modal';
 
 // @ts-ignore: Ignore import of compiled template
 import layout from '../templates/components/modal-dialog';
@@ -96,7 +97,21 @@ export default class ModalDialogClass extends ModalDialog {
         super.willDestroyElement();
         document.removeEventListener('keyup', this.keyupHandler);
         document.removeEventListener('click', this.clickHandler);
-        later(document.body.classList, 'remove', 'modal-open', this.modal.animationDuration);
+
+        later(this, this.removeModalOpenClass, this.modal.animationDuration);
+    }
+
+    /**
+     * Removes modal open class. This was added due to closing another modal right before opening a new one.
+     * When that happened the delay would remove the `modal-open` class after the other one was opened so
+     * the modal would be open, but with no `modal-open` class on the body
+     *
+     * @memberof ModalDialogClass
+     */
+    removeModalOpenClass() {
+        if (!this.modal.modalIsOpen) {
+            document.body.classList.remove('modal-open');
+        }
     }
 
     /**
