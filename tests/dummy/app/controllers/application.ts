@@ -1,7 +1,8 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
-import Modal from '@gavant/ember-modals/services/modal';
 import { inject as service } from '@ember/service';
+
+import Modal from '@gavant/ember-modals/services/modal';
 
 export default class Application extends Controller {
     @service modal!: Modal;
