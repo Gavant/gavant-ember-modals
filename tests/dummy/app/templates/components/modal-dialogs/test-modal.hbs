@@ -9,10 +9,10 @@ Nullam eget dui ac dolor pretium convallis. Fusce sit amet dignissim nunc, ut va
         </p>
     </modal.body>
     <modal.footer class="justify-content-between">
-        <button class="btn btn-outline-secondary" {{on "click" modal.close}}>
+        <button class="btn btn-outline-secondary" type="button" {{on "click" modal.close}}>
             Close
         </button>
-        <button class="btn btn-primary" {{on "click" this.save}}>
+        <button class="btn btn-primary" type="button" {{on "click" this.save}}>
             Save
         </button>
     </modal.footer>

@@ -9,7 +9,7 @@
 //   // normal class body definition here
 // };
 
+import ModalDialog from '@gavant/ember-modals/components/modal-dialog/modal-dialog';
 
-import ModalDialog from '@gavant/ember-modals/components/modal-dialog';
 export default ModalDialog;
 // export { default } from '@gavant/ember-modals/components/modal-dialog';

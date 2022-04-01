@@ -1,19 +1,14 @@
 import { computed, setProperties } from '@ember/object';
 import { bind, later } from '@ember/runloop';
 import { inject as service } from '@ember/service';
-import { tryInvoke } from '@ember/utils';
 
 import ModalDialog from 'ember-modal-dialog/components/modal-dialog';
 
 import Modal from '@gavant/ember-modals/services/modal';
 
-// @ts-ignore: Ignore import of compiled template
-import layout from '../templates/components/modal-dialog';
-
 const ESC_KEY = 27;
 
 export default class ModalDialogClass extends ModalDialog {
-    layout = layout;
     @service modal!: Modal;
 
     /**
@@ -122,7 +117,7 @@ export default class ModalDialogClass extends ModalDialog {
      */
     onDocumentKeyup(event: KeyboardEvent) {
         if (event.keyCode === ESC_KEY && this.closable) {
-            tryInvoke(this, 'onClose');
+            this?.onClose();
         }
     }
 
@@ -139,7 +134,7 @@ export default class ModalDialogClass extends ModalDialog {
         const target = event.target as HTMLElement;
         if (target && target.matches('.modal') && this.closable && this.clickOutsideToClose) {
             event.preventDefault();
-            tryInvoke(this, 'onClose');
+            this?.onClose();
         }
     }
 }

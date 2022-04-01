@@ -1,9 +1,7 @@
-import Service from '@ember/service';
 import Evented from '@ember/object/evented';
-import { A } from '@ember/array';
-import { set } from '@ember/object';
 import { later } from '@ember/runloop';
-import { notEmpty } from '@ember/object/computed';
+import Service from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 
 interface ModalConfig {
     outlet: string | undefined;
@@ -40,15 +38,17 @@ export default class Modal extends Service.extend(Evented) {
     /**
      * The currently opened modal
      */
-    current: any;
+    @tracked current: any;
 
     /**
      * The modal queue. When you call open a modal it gets added into this queue
      */
-    modals = A();
-    outlets = A();
+    @tracked modals = [];
+    @tracked outlets = [];
 
-    @notEmpty('current') modalIsOpen!: boolean;
+    get modalIsOpen() {
+        return !!this.current;
+    }
 
     /**
      * Opens a modal
@@ -62,7 +62,7 @@ export default class Modal extends Service.extend(Evented) {
         const config = { ...this.defaultModalConfig, ...modalConfig };
         const outlet = config.outlet;
         delete config.outlet;
-        this.modals.pushObject({
+        this.modals.push({
             path,
             outlet,
             config
@@ -78,13 +78,13 @@ export default class Modal extends Service.extend(Evented) {
      */
     close(): Promise<any> {
         return new Promise((resolve) => {
-            set(this, 'animation', this.animationOut);
+            this.animation = this.animationOut;
             later(
                 this,
                 () => {
                     const modal = this.current;
                     //Set current modal to null, trigger closed event and resolve close promise
-                    set(this, 'current', null);
+                    this.current = null;
                     this.trigger('closed', modal);
                     resolve();
                     this.processQueue();
@@ -112,8 +112,8 @@ export default class Modal extends Service.extend(Evented) {
      */
     popFromQueue() {
         const modal = this.modals.shiftObject();
-        set(this, 'animation', this.animationIn);
-        set(this, 'current', modal);
+        this.animation = this.animationIn;
+        this.current = modal;
         this.trigger('opened', modal);
     }
 }
