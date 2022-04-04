@@ -12,16 +12,16 @@ module('Integration | Component | modal-dialog/body', function (hooks) {
         // Set any properties with this.set('myProperty', 'value');
         // Handle any actions with this.set('myAction', function(val) { ... });
 
-        await render(hbs`<ModalDialog::Body />`);
+        await render(hbs`<Modal::Body />`);
         let element = this.element.textContent;
 
         assert.strictEqual(element?.trim(), '');
 
         // Template block usage:
         await render(hbs`
-        <ModalDialog::Body>
+        <Modal::Body>
         template block text
-        </ModalDialog::Body>
+        </Modal::Body>
     `);
         element = this.element.textContent;
 

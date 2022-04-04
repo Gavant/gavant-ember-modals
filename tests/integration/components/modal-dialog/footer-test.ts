@@ -12,16 +12,16 @@ module('Integration | Component | modal-dialog/footer', function (hooks) {
         // Set any properties with this.set('myProperty', 'value');
         // Handle any actions with this.set('myAction', function(val) { ... });
 
-        await render(hbs`<ModalDialog::Footer />`);
+        await render(hbs`<Modal::Footer />`);
         let element = this.element.textContent;
 
         assert.strictEqual(element?.trim(), '');
 
         // Template block usage:
         await render(hbs`
-        <ModalDialog::Footer>
+        <Modal::Footer>
         template block text
-        </ModalDialog::Footer>
+        </Modal::Footer>
     `);
         element = this.element.textContent;
 

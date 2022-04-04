@@ -12,16 +12,16 @@ module('Integration | Component | modal-dialog/header', function (hooks) {
         // Set any properties with this.set('myProperty', 'value');
         // Handle any actions with this.set('myAction', function(val) { ... });
 
-        await render(hbs`<ModalDialog::Header />`);
+        await render(hbs`<Modal::Header />`);
         let element = this.element.textContent;
 
         assert.strictEqual(element?.trim(), '');
 
         // Template block usage:
         await render(hbs`
-      <ModalDialog::Header>
+      <Modal::Header>
         template block text
-      </ModalDialog::Header>
+      </Modal::Header>
     `);
         element = this.element.textContent;
 
