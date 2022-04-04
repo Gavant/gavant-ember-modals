@@ -7,10 +7,9 @@ import Modal, { ModalConfig, ModalDialog } from '@gavant/ember-modals/services/m
 
 interface ModalOutletArgs {}
 
-type ModalDialogWithoutConfig<A extends unknown> = Omit<ModalDialog<A>, 'config'>;
+type ModalDialogWithoutConfig<A> = Omit<ModalDialog<A>, 'config'>;
 
-type ModalDialogComponent<A extends unknown> = ModalDialogWithoutConfig<A> &
-    A & { config: { outlet: ModalConfig<A>['outlet'] } };
+type ModalDialogComponent<A> = ModalDialogWithoutConfig<A> & A & { config: { outlet: ModalConfig<A>['outlet'] } };
 
 export default class ModalOutlet extends Component<ModalOutletArgs> {
     @service declare modal: Modal;
@@ -39,7 +38,7 @@ export default class ModalOutlet extends Component<ModalOutletArgs> {
 
     get currentCmp(): string | null {
         const modal = this.currentData;
-        return !!modal ? this.openModal(modal) : null;
+        return modal ? this.openModal(modal) : null;
     }
 
     openModal(modal: ModalDialogComponent<unknown>): string {
@@ -55,8 +54,8 @@ export default class ModalOutlet extends Component<ModalOutletArgs> {
      */
     @action
     onDidInsert() {
-        let name = this.name;
-        let outlets = this.modal.outlets;
+        const name = this.name;
+        const outlets = this.modal.outlets;
         assert(`A modal outlet named ${name} has already been declared`, !outlets.includes(name));
 
         outlets.push(name);
@@ -66,11 +65,12 @@ export default class ModalOutlet extends Component<ModalOutletArgs> {
      * Remove the outlet from the outlets array in the modal service
      */
     willDestroy() {
+        super.willDestroy();
         //if this outlet is currently showing a modal, tell the service to close it
-        if (!!this.currentData) {
+        if (this.currentData) {
             this.closeModal();
         }
-        let name = this.name;
+        const name = this.name;
         this.modal.outlets = this.modal.outlets.filter((item) => item !== name);
     }
 

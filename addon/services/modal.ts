@@ -3,13 +3,13 @@ import { later } from '@ember/runloop';
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 
-export interface ModalConfig<A extends unknown> {
+export interface ModalConfig<A> {
     [key: string]: unknown;
     outlet: string | undefined;
     actions?: A;
 }
 
-export interface ModalDialog<A extends unknown> {
+export interface ModalDialog<A> {
     path: string;
     config: ModalConfig<A>;
 }

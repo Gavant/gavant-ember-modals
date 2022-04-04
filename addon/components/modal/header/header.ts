@@ -6,4 +6,5 @@ interface ModalDialogHeaderArgs {
     onClose: () => void;
 }
 
+// eslint-disable-next-line ember/no-empty-glimmer-component-classes
 export default class ModalDialogHeader extends Component<ModalDialogHeaderArgs> {}

@@ -3,6 +3,6 @@
 <h2 id="title">Welcome to Ember</h2>
 
 {{outlet}}
-{{modal-outlet}}
+<ModalOutlet />
 
-<button class="btn btn-primary" type="button" {{action "openTestModal"}}> Open Modal </button>
+<button class="btn btn-primary" type="button" {{on "click" this.openTestModal}}> Open Modal </button>

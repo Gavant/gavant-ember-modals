@@ -15,7 +15,7 @@ module('Integration | Component | modal-dialog/footer', function (hooks) {
         await render(hbs`<ModalDialog::Footer />`);
         let element = this.element.textContent;
 
-        assert.equal(element && element.trim(), '');
+        assert.strictEqual(element?.trim(), '');
 
         // Template block usage:
         await render(hbs`
@@ -25,6 +25,6 @@ module('Integration | Component | modal-dialog/footer', function (hooks) {
     `);
         element = this.element.textContent;
 
-        assert.equal(element && element.trim(), 'template block text');
+        assert.strictEqual(element?.trim(), 'template block text');
     });
 });

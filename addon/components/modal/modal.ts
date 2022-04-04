@@ -1,4 +1,3 @@
-import { computed, setProperties } from '@ember/object';
 import { bind, later } from '@ember/runloop';
 import { inject as service } from '@ember/service';
 
@@ -56,7 +55,6 @@ export default class ModalDialogClass extends ModalDialog {
      *
      * @returns Overlay class based on animation state
      */
-    @computed('modal.animation')
     get overlayClass() {
         return `modal-backdrop animated ${
             this.modal.animation && this.modal.animation.includes('In') ? 'fadeIn' : 'fadeOut'
@@ -68,7 +66,6 @@ export default class ModalDialogClass extends ModalDialog {
      *
      * @returns Class based on size
      */
-    @computed('size')
     get modalSize(): string {
         return `modal-${this.size}`;
     }
@@ -83,7 +80,8 @@ export default class ModalDialogClass extends ModalDialog {
         document.addEventListener('keyup', keyupHandler);
         document.addEventListener('click', clickHandler);
         document.body.classList.add('modal-open');
-        setProperties(this, { keyupHandler, clickHandler });
+        this.keyupHandler = keyupHandler;
+        this.clickHandler = clickHandler;
     }
 
     /**

@@ -13,8 +13,8 @@ module('Integration | Component | modal-dialog', function (hooks) {
         // Handle any actions with this.set('myAction', function(val) { ... });
 
         await render(hbs`<ModalDialog />`);
-        let element = this.element.textContent;
+        const element = this.element.textContent;
 
-        assert.equal(element && element.trim(), '');
+        assert.strictEqual(element?.trim(), '');
     });
 });
