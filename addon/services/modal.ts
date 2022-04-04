@@ -5,11 +5,11 @@ import { tracked } from '@glimmer/tracking';
 
 interface ModalConfig {
     outlet: string | undefined;
+    actions?: Record<string, unknown>;
 }
 
-interface ModalDialog {
+export interface ModalDialog {
     path: string;
-    outlet?: string;
     config: ModalConfig;
 }
 
@@ -31,9 +31,9 @@ export default class Modal extends Service.extend(Evented) {
     /**
      * Animation CSS classes
      */
-    animation: string | undefined;
-    animationIn: string = 'zoomIn';
-    animationOut: string = 'zoomOut';
+    @tracked animation: string | undefined;
+    @tracked animationIn: string = 'zoomIn';
+    @tracked animationOut: string = 'zoomOut';
 
     /**
      * Animation duration
@@ -44,7 +44,7 @@ export default class Modal extends Service.extend(Evented) {
     /**
      * The currently opened modal
      */
-    @tracked current: any;
+    @tracked current?: ModalDialog | null;
 
     /**
      * The modal queue. When you call open a modal it gets added into this queue
@@ -66,11 +66,8 @@ export default class Modal extends Service.extend(Evented) {
      */
     open(path: string, modalConfig: object = {}) {
         const config = { ...this.defaultModalConfig, ...modalConfig };
-        const outlet = config.outlet;
-        delete config.outlet;
         this.modals.push({
             path,
-            outlet,
             config
         });
         this.processQueue();

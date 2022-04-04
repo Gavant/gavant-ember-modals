@@ -3,13 +3,7 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import Component from '@glimmer/component';
 
-import Modal from '@gavant/ember-modals/services/modal';
-
-interface currentModalData {
-    name: string;
-    config: object;
-    actions: object;
-}
+import Modal, { ModalDialog } from '@gavant/ember-modals/services/modal';
 
 interface ModalOutletArgs {}
 
@@ -17,16 +11,17 @@ export default class ModalOutlet extends Component<ModalOutletArgs> {
     @service declare modal: Modal;
     name: string = 'application';
 
-    get currentData(): currentModalData | null {
+    get currentData(): ModalDialog | null {
         if (this.modal.current) {
             const path = this.modal.current.path;
-            const config = this.modal.current.config ?? {};
-            const outlet = this.modal.current.outlet;
-            const actions = config.actions ?? {};
+            // const config = this.modal.current.config ?? {};
+            const outlet = this.modal.current.config.outlet;
+            // const actions = config.actions ?? {};
 
             if (path) {
                 if (outlet && outlet === this.name) {
-                    return Object.assign({ name: path }, config, actions);
+                    return this.modal.current;
+                    // return Object.assign({ name: path }, config, actions);
                 }
             }
         }
@@ -35,12 +30,12 @@ export default class ModalOutlet extends Component<ModalOutletArgs> {
     }
 
     get currentCmp(): string | null {
-        const data = this.currentData;
-        return !!data ? this.openModal(data) : null;
+        const modal = this.currentData;
+        return !!modal ? this.openModal(modal) : null;
     }
 
-    openModal(data: currentModalData): string {
-        return `modal-dialogs/${data.name}`;
+    openModal(modal: ModalDialog): string {
+        return `modal-dialogs/${modal.path}`;
     }
 
     closeModal() {
@@ -50,8 +45,8 @@ export default class ModalOutlet extends Component<ModalOutletArgs> {
     /**
      * Gets the outlet name, and makes sure there isn't already another outlet with the same name.
      */
-    didInsertElement() {
-        super.didInsertElement();
+    @action
+    onDidInsert() {
         let name = this.name;
         let outlets = this.modal.outlets;
         assert(`A modal outlet named ${name} has already been declared`, !outlets.includes(name));

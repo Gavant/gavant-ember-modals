@@ -117,7 +117,7 @@ export default class ModalDialogClass extends ModalDialog {
      */
     onDocumentKeyup(event: KeyboardEvent) {
         if (event.keyCode === ESC_KEY && this.closable) {
-            this?.onClose();
+            this?.onCloseAction();
         }
     }
 
@@ -134,7 +134,7 @@ export default class ModalDialogClass extends ModalDialog {
         const target = event.target as HTMLElement;
         if (target && target.matches('.modal') && this.closable && this.clickOutsideToClose) {
             event.preventDefault();
-            this?.onClose();
+            this?.onCloseAction();
         }
     }
 }

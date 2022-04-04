@@ -25,15 +25,13 @@
     @onClickOverlay={{this.onClickOverlayAction}}
     @onClose={{this.onCloseAction}}
 >
-    {{yield}}
-
     <div class="modal-dialog {{this.modalSize}} animated {{this.modal.animation}}">
         <div class="modal-content">
             {{yield
                 (hash
-                    header=(component "modal-dialog/header" closable=@closable onClose=this.onCloseAction)
-                    body=(component "modal-dialog/body")
-                    footer=(component "modal-dialog/footer")
+                    header=(component "modal/header" closable=@closable onClose=this.onCloseAction)
+                    body=(component "modal/body")
+                    footer=(component "modal/footer")
                     close=this.onCloseAction
                 )
             }}
