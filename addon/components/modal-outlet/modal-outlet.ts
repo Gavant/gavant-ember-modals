@@ -3,25 +3,33 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import Component from '@glimmer/component';
 
-import Modal, { ModalDialog } from '@gavant/ember-modals/services/modal';
+import Modal, { ModalConfig, ModalDialog } from '@gavant/ember-modals/services/modal';
 
 interface ModalOutletArgs {}
+
+type ModalDialogWithoutConfig<A extends unknown> = Omit<ModalDialog<A>, 'config'>;
+
+type ModalDialogComponent<A extends unknown> = ModalDialogWithoutConfig<A> &
+    A & { config: { outlet: ModalConfig<A>['outlet'] } };
 
 export default class ModalOutlet extends Component<ModalOutletArgs> {
     @service declare modal: Modal;
     name: string = 'application';
 
-    get currentData(): ModalDialog | null {
+    get currentData(): ModalDialogComponent<unknown> | null {
         if (this.modal.current) {
             const path = this.modal.current.path;
-            // const config = this.modal.current.config ?? {};
             const outlet = this.modal.current.config.outlet;
-            // const actions = config.actions ?? {};
 
             if (path) {
                 if (outlet && outlet === this.name) {
-                    return this.modal.current;
-                    // return Object.assign({ name: path }, config, actions);
+                    const actions = this.modal.current.config.actions ?? {};
+                    const transformedComponent: ModalDialogComponent<unknown> = Object.assign(
+                        this.modal.current,
+                        { config: { outlet: this.modal.current.config.outlet } },
+                        actions
+                    );
+                    return transformedComponent;
                 }
             }
         }
@@ -34,7 +42,7 @@ export default class ModalOutlet extends Component<ModalOutletArgs> {
         return !!modal ? this.openModal(modal) : null;
     }
 
-    openModal(modal: ModalDialog): string {
+    openModal(modal: ModalDialogComponent<unknown>): string {
         return `modal-dialogs/${modal.path}`;
     }
 

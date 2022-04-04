@@ -3,14 +3,15 @@ import { later } from '@ember/runloop';
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 
-interface ModalConfig {
+export interface ModalConfig<A extends unknown> {
+    [key: string]: unknown;
     outlet: string | undefined;
-    actions?: Record<string, unknown>;
+    actions?: A;
 }
 
-export interface ModalDialog {
+export interface ModalDialog<A extends unknown> {
     path: string;
-    config: ModalConfig;
+    config: ModalConfig<A>;
 }
 
 /**
@@ -24,7 +25,7 @@ export default class Modal extends Service.extend(Evented) {
     /**
      * Default modal config values used for open()
      */
-    defaultModalConfig: ModalConfig = {
+    defaultModalConfig: ModalConfig<unknown> = {
         outlet: 'application'
     };
 
@@ -44,12 +45,12 @@ export default class Modal extends Service.extend(Evented) {
     /**
      * The currently opened modal
      */
-    @tracked current?: ModalDialog | null;
+    @tracked current?: ModalDialog<unknown> | null;
 
     /**
      * The modal queue. When you call open a modal it gets added into this queue
      */
-    @tracked modals: ModalDialog[] = [];
+    @tracked modals: ModalDialog<unknown>[] = [];
     @tracked outlets: string[] = [];
 
     get modalIsOpen() {
@@ -64,7 +65,7 @@ export default class Modal extends Service.extend(Evented) {
      * This means that all you need to pass is the path inside that folder seperated by slashes i.e. `accounts/new`
      * @param config - The config you want to pass to the modal. This should be an object, with any number of attributes inside
      */
-    open(path: string, modalConfig: object = {}) {
+    open(path: string, modalConfig: Partial<ModalConfig<unknown>> = {}) {
         const config = { ...this.defaultModalConfig, ...modalConfig };
         this.modals.push({
             path,

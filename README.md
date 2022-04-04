@@ -61,7 +61,7 @@ export default class ModalDialogsAddEmail extends Component {
 Template
 
 ```hbs
-<ModalDialog @onClose={{@onClose}} @size='sm' as |Modal|>
+<Modal @onClose={{@onClose}} @size='sm' as |Modal|>
     <Modal.header @title='Add Email' />
     <FormValidator @changeset={{@options.changeset}} @submit={{this.save}} as |changeset Validator|>
         <Validator.input>
@@ -72,7 +72,7 @@ Template
             <ButtonSpinner @type='primary' label='Save' @action={{Validator.submit}} />
         </Modal.footer>
     </FormValidator>
-</ModalDialog>
+</Modal>
 ```
 
 and now open the modal by injecting the modal service provided into the controller that needs it

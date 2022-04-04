@@ -8,6 +8,7 @@ import Modal from '@gavant/ember-modals/services/modal';
 
 const ESC_KEY = 27;
 
+export type ModalDialogClassWithActions<A> = ModalDialogClass & A;
 export default class ModalDialogClass extends ModalDialog {
     @service declare modal: Modal;
 
