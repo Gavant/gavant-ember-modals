@@ -7,6 +7,12 @@ interface ModalConfig {
     outlet: string | undefined;
 }
 
+interface ModalDialog {
+    path: string;
+    outlet?: string;
+    config: ModalConfig;
+}
+
 /**
  * Class that handles opening and closing of modals
  *
@@ -43,8 +49,8 @@ export default class Modal extends Service.extend(Evented) {
     /**
      * The modal queue. When you call open a modal it gets added into this queue
      */
-    @tracked modals = [];
-    @tracked outlets = [];
+    @tracked modals: ModalDialog[] = [];
+    @tracked outlets: string[] = [];
 
     get modalIsOpen() {
         return !!this.current;
@@ -86,7 +92,7 @@ export default class Modal extends Service.extend(Evented) {
                     //Set current modal to null, trigger closed event and resolve close promise
                     this.current = null;
                     this.trigger('closed', modal);
-                    resolve();
+                    resolve(this.current);
                     this.processQueue();
                 },
                 this.animationDuration
@@ -111,7 +117,7 @@ export default class Modal extends Service.extend(Evented) {
      * This method shouldn't need to be called explicitly as this service manages the queue.
      */
     popFromQueue() {
-        const modal = this.modals.shiftObject();
+        const modal = this.modals.shift();
         this.animation = this.animationIn;
         this.current = modal;
         this.trigger('opened', modal);

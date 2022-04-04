@@ -9,7 +9,7 @@ import Modal from '@gavant/ember-modals/services/modal';
 const ESC_KEY = 27;
 
 export default class ModalDialogClass extends ModalDialog {
-    @service modal!: Modal;
+    @service declare modal: Modal;
 
     /**
      * @default 'md'

@@ -56,7 +56,7 @@ export default class ModalOutlet extends Component<ModalOutletArgs> {
         let outlets = this.modal.outlets;
         assert(`A modal outlet named ${name} has already been declared`, !outlets.includes(name));
 
-        outlets.pushObject(name);
+        outlets.push(name);
     }
 
     /**
@@ -68,8 +68,7 @@ export default class ModalOutlet extends Component<ModalOutletArgs> {
             this.closeModal();
         }
         let name = this.name;
-        let outlets = this.modal.outlets;
-        outlets.removeObject(name);
+        this.modal.outlets = this.modal.outlets.filter((item) => item !== name);
     }
 
     @action
