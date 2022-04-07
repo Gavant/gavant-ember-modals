@@ -4,11 +4,9 @@ DISCLAIMER: This addon is not actively maintained for public use. Pull requests 
 
 ## Compatibility
 
--   Ember.js v3.12 or above
--   Ember CLI v2.13 or above
--   Node.js v10 or above
-
-## Installation
+-   Ember.js v3.24 or above
+-   Ember CLI v3.24 or above
+-   Node.js v12 or above
 
 ```
 ember install @gavant/ember-modals
@@ -63,22 +61,18 @@ export default class ModalDialogsAddEmail extends Component {
 Template
 
 ```hbs
-<ModalDialog @onClose={{@onClose}} @size="sm" as |Modal|>
-    <Modal.header @title="Add Email" />
-    <FormValidator
-        @changeset={{@options.changeset}}
-        @submit={{this.save}}
-        as |changeset Validator|
-    >
+<Modal @onClose={{@onClose}} @size='sm' as |Modal|>
+    <Modal.header @title='Add Email' />
+    <FormValidator @changeset={{@options.changeset}} @submit={{this.save}} as |changeset Validator|>
         <Validator.input>
-            <FlInput @value={{changeset.emailAddress}} @placeholder="Email" />
+            <FlInput @value={{changeset.emailAddress}} @placeholder='Email' />
         </Validator.input>
         <Modal.footer>
-            <ButtonBasic @type="link" @link="Cancel" @action={{Modal.close}} />
-            <ButtonSpinner @type="primary" label="Save" @action={{Validator.submit}} />
+            <ButtonBasic @type='link' @link='Cancel' @action={{Modal.close}} />
+            <ButtonSpinner @type='primary' label='Save' @action={{Validator.submit}} />
         </Modal.footer>
     </FormValidator>
-</ModalDialog>
+</Modal>
 ```
 
 and now open the modal by injecting the modal service provided into the controller that needs it

@@ -1,28 +1,27 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { get } from '@ember/object';
+import { action } from '@ember/object';
 
-export default Controller.extend({
-    modal: service(),
-    day: 2,
+export default class DashboardController extends Controller {
+    @service modal;
+    day = 2;
+
+    @action
+    openTestModal() {
+        this.modal.open('test-modal', {
+            outlet: 'dashboard',
+            day: this.day,
+            actions: {
+                save: () => this.save()
+            }
+        });
+        this.modal.open('test-modal', {
+            outlet: 'dashboard'
+        });
+    }
+
+    @action
     save() {
         //Do nothing
-    },
-    actions: {
-        openTestModal() {
-            get(this, 'modal').open('test-modal', {
-                outlet: 'dashboard',
-                day: get(this, 'day'),
-                actions: {
-                    save: () => this.save()
-                }
-            });
-            get(this, 'modal').open('test-modal', {
-                outlet: 'dashboard'
-            });
-        },
-        save() {
-            //Do nothing
-        }
     }
-});
+}

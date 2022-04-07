@@ -1,36 +1,42 @@
+'use strict';
+
 module.exports = {
     root: true,
-    parser: 'babel-eslint',
-    parserOptions: {
-        ecmaVersion: 2018,
-        sourceType: 'module',
-        ecmaFeatures: {
-            legacyDecorators: true
-        }
-    },
-    plugins: ['ember', 'prettier'],
-    extends: ['eslint:recommended', 'plugin:ember/recommended'],
+    parser: '@typescript-eslint/parser',
+    plugins: ['ember', '@typescript-eslint', 'prettier'],
+    extends: [
+        'eslint:recommended',
+        'plugin:ember/recommended',
+        'plugin:@typescript-eslint/recommended',
+        'prettier',
+        'plugin:prettier/recommended'
+    ],
     env: {
         browser: true
     },
     rules: {
         'ember/no-jquery': 'error',
-        'prettier/prettier': 'error'
+
+        '@typescript-eslint/no-inferrable-types': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/no-var-requires': 'off',
+        '@typescript-eslint/no-empty-function': 'off',
+        '@typescript-eslint/no-empty-interface': 'off'
     },
     overrides: [
         // node files
         {
             files: [
-                '.eslintrc.js',
-                '.template-lintrc.js',
-                'ember-cli-build.js',
-                'index.js',
-                'testem.js',
-                'blueprints/*/index.js',
-                'config/**/*.js',
-                'tests/dummy/config/**/*.js'
+                './.eslintrc.js',
+                './.prettierrc.js',
+                './.template-lintrc.js',
+                './ember-cli-build.js',
+                './index.js',
+                './testem.js',
+                './blueprints/*/index.js',
+                './config/**/*.js',
+                './tests/dummy/config/**/*.js'
             ],
-            excludedFiles: ['addon/**', 'addon-test-support/**', 'app/**', 'tests/dummy/app/**'],
             parserOptions: {
                 sourceType: 'script'
             },
@@ -39,9 +45,12 @@ module.exports = {
                 node: true
             },
             plugins: ['node'],
-            rules: Object.assign({}, require('eslint-plugin-node').configs.recommended.rules, {
-                // add your custom rules and overrides for node files here
-            })
+            extends: ['plugin:node/recommended']
+        },
+        {
+            // test files
+            files: ['tests/**/*-test.{js,ts}'],
+            extends: ['plugin:qunit/recommended']
         }
     ]
 };

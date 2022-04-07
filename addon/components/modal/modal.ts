@@ -1,20 +1,15 @@
-import { computed, setProperties } from '@ember/object';
 import { bind, later } from '@ember/runloop';
 import { inject as service } from '@ember/service';
-import { tryInvoke } from '@ember/utils';
 
 import ModalDialog from 'ember-modal-dialog/components/modal-dialog';
 
 import Modal from '@gavant/ember-modals/services/modal';
 
-// @ts-ignore: Ignore import of compiled template
-import layout from '../templates/components/modal-dialog';
-
 const ESC_KEY = 27;
 
+export type ModalDialogClassWithActions<A> = ModalDialogClass & A;
 export default class ModalDialogClass extends ModalDialog {
-    layout = layout;
-    @service modal!: Modal;
+    @service declare modal: Modal;
 
     /**
      * @default 'md'
@@ -60,7 +55,6 @@ export default class ModalDialogClass extends ModalDialog {
      *
      * @returns Overlay class based on animation state
      */
-    @computed('modal.animation')
     get overlayClass() {
         return `modal-backdrop animated ${
             this.modal.animation && this.modal.animation.includes('In') ? 'fadeIn' : 'fadeOut'
@@ -72,7 +66,6 @@ export default class ModalDialogClass extends ModalDialog {
      *
      * @returns Class based on size
      */
-    @computed('size')
     get modalSize(): string {
         return `modal-${this.size}`;
     }
@@ -87,7 +80,8 @@ export default class ModalDialogClass extends ModalDialog {
         document.addEventListener('keyup', keyupHandler);
         document.addEventListener('click', clickHandler);
         document.body.classList.add('modal-open');
-        setProperties(this, { keyupHandler, clickHandler });
+        this.keyupHandler = keyupHandler;
+        this.clickHandler = clickHandler;
     }
 
     /**
@@ -122,7 +116,7 @@ export default class ModalDialogClass extends ModalDialog {
      */
     onDocumentKeyup(event: KeyboardEvent) {
         if (event.keyCode === ESC_KEY && this.closable) {
-            tryInvoke(this, 'onClose');
+            this?.onCloseAction();
         }
     }
 
@@ -139,7 +133,7 @@ export default class ModalDialogClass extends ModalDialog {
         const target = event.target as HTMLElement;
         if (target && target.matches('.modal') && this.closable && this.clickOutsideToClose) {
             event.preventDefault();
-            tryInvoke(this, 'onClose');
+            this?.onCloseAction();
         }
     }
 }

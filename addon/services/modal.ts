@@ -1,12 +1,17 @@
-import Service from '@ember/service';
 import Evented from '@ember/object/evented';
-import { A } from '@ember/array';
-import { set } from '@ember/object';
 import { later } from '@ember/runloop';
-import { notEmpty } from '@ember/object/computed';
+import Service from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 
-interface ModalConfig {
+export interface ModalConfig<A> {
+    [key: string]: unknown;
     outlet: string | undefined;
+    actions?: A;
+}
+
+export interface ModalDialog<A> {
+    path: string;
+    config: ModalConfig<A>;
 }
 
 /**
@@ -20,16 +25,16 @@ export default class Modal extends Service.extend(Evented) {
     /**
      * Default modal config values used for open()
      */
-    defaultModalConfig: ModalConfig = {
+    defaultModalConfig: ModalConfig<unknown> = {
         outlet: 'application'
     };
 
     /**
      * Animation CSS classes
      */
-    animation: string | undefined;
-    animationIn: string = 'zoomIn';
-    animationOut: string = 'zoomOut';
+    @tracked animation: string | undefined;
+    @tracked animationIn: string = 'zoomIn';
+    @tracked animationOut: string = 'zoomOut';
 
     /**
      * Animation duration
@@ -40,15 +45,17 @@ export default class Modal extends Service.extend(Evented) {
     /**
      * The currently opened modal
      */
-    current: any;
+    @tracked current?: ModalDialog<unknown> | null;
 
     /**
      * The modal queue. When you call open a modal it gets added into this queue
      */
-    modals = A();
-    outlets = A();
+    @tracked modals: ModalDialog<unknown>[] = [];
+    @tracked outlets: string[] = [];
 
-    @notEmpty('current') modalIsOpen!: boolean;
+    get modalIsOpen() {
+        return !!this.current;
+    }
 
     /**
      * Opens a modal
@@ -58,13 +65,10 @@ export default class Modal extends Service.extend(Evented) {
      * This means that all you need to pass is the path inside that folder seperated by slashes i.e. `accounts/new`
      * @param config - The config you want to pass to the modal. This should be an object, with any number of attributes inside
      */
-    open(path: string, modalConfig: object = {}) {
+    open(path: string, modalConfig: Partial<ModalConfig<unknown>> = {}) {
         const config = { ...this.defaultModalConfig, ...modalConfig };
-        const outlet = config.outlet;
-        delete config.outlet;
-        this.modals.pushObject({
+        this.modals.push({
             path,
-            outlet,
             config
         });
         this.processQueue();
@@ -78,15 +82,15 @@ export default class Modal extends Service.extend(Evented) {
      */
     close(): Promise<any> {
         return new Promise((resolve) => {
-            set(this, 'animation', this.animationOut);
+            this.animation = this.animationOut;
             later(
                 this,
                 () => {
                     const modal = this.current;
                     //Set current modal to null, trigger closed event and resolve close promise
-                    set(this, 'current', null);
+                    this.current = null;
                     this.trigger('closed', modal);
-                    resolve();
+                    resolve(this.current);
                     this.processQueue();
                 },
                 this.animationDuration
@@ -111,9 +115,9 @@ export default class Modal extends Service.extend(Evented) {
      * This method shouldn't need to be called explicitly as this service manages the queue.
      */
     popFromQueue() {
-        const modal = this.modals.shiftObject();
-        set(this, 'animation', this.animationIn);
-        set(this, 'current', modal);
+        const modal = this.modals.shift();
+        this.animation = this.animationIn;
+        this.current = modal;
         this.trigger('opened', modal);
     }
 }

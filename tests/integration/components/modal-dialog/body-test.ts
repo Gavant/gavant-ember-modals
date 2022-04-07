@@ -1,28 +1,30 @@
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Component | modal-dialog/body', function(hooks) {
+import { setupRenderingTest } from 'ember-qunit';
+
+import hbs from 'htmlbars-inline-precompile';
+import { module, test } from 'qunit';
+
+module('Integration | Component | modal-dialog/body', function (hooks) {
     setupRenderingTest(hooks);
 
-    test('it renders', async function(assert) {
+    test('it renders', async function (assert) {
         // Set any properties with this.set('myProperty', 'value');
         // Handle any actions with this.set('myAction', function(val) { ... });
 
-        await render(hbs`{{modal-dialog/body}}`);
+        await render(hbs`<Modal::Body />`);
         let element = this.element.textContent;
 
-        assert.equal(element && element.trim(), '');
+        assert.strictEqual(element?.trim(), '');
 
         // Template block usage:
         await render(hbs`
-      {{#modal-dialog/body}}
+        <Modal::Body>
         template block text
-      {{/modal-dialog/body}}
+        </Modal::Body>
     `);
         element = this.element.textContent;
 
-        assert.equal(element && element.trim(), 'template block text');
+        assert.strictEqual(element?.trim(), 'template block text');
     });
 });
