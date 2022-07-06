@@ -1,1 +1,1 @@
-export { ModalDialogClassWithActions } from './components/modal/modal';
+export type { ModalDialogClassWithActions } from './components/modal';
