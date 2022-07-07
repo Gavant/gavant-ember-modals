@@ -49,6 +49,9 @@ export default class ModalDialogClass extends ModalDialog {
 
     keyupHandler: any;
     clickHandler: any;
+    onMouseDownHandler: any;
+
+    clickTarget: any;
 
     /**
      * Computed property that watches for changes on `modal.animation`
@@ -77,11 +80,14 @@ export default class ModalDialogClass extends ModalDialog {
         super.didInsertElement();
         const keyupHandler = bind(this, 'onDocumentKeyup');
         const clickHandler = bind(this, 'onDocumentClick');
+        const onMouseDownHandler = bind(this, 'onMouseDown');
         document.addEventListener('keyup', keyupHandler);
-        document.addEventListener('click', clickHandler);
+        document.addEventListener('mousedown', onMouseDownHandler);
+        document.addEventListener('mouseup', clickHandler);
         document.body.classList.add('modal-open');
         this.keyupHandler = keyupHandler;
         this.clickHandler = clickHandler;
+        this.onMouseDownHandler = onMouseDownHandler;
     }
 
     /**
@@ -90,7 +96,8 @@ export default class ModalDialogClass extends ModalDialog {
     willDestroyElement() {
         super.willDestroyElement();
         document.removeEventListener('keyup', this.keyupHandler);
-        document.removeEventListener('click', this.clickHandler);
+        document.removeEventListener('mousedown', this.onMouseDownHandler);
+        document.addEventListener('mouseup', this.clickHandler);
 
         later(this, this.removeModalOpenClass, this.modal.animationDuration);
     }
@@ -120,6 +127,11 @@ export default class ModalDialogClass extends ModalDialog {
         }
     }
 
+    onMouseDown(event: MouseEvent) {
+        const target = event.target as HTMLElement;
+        this.clickTarget = target;
+    }
+
     /**
      * Document Click Event Listener
      *
@@ -131,7 +143,13 @@ export default class ModalDialogClass extends ModalDialog {
         //this is necessary because bootstrap's .modal container stretches to cover the entire viewport
         //and has a higher z-index ordering than the overlay backdrop
         const target = event.target as HTMLElement;
-        if (target && target.matches('.modal') && this.closable && this.clickOutsideToClose) {
+        if (
+            target &&
+            this.clickTarget === target &&
+            target.matches('.modal') &&
+            this.closable &&
+            this.clickOutsideToClose
+        ) {
             event.preventDefault();
             this?.onCloseAction();
         }

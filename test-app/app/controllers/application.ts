@@ -4,12 +4,14 @@ import { inject as service } from '@ember/service';
 
 import Modal from '@gavant/ember-modals/services/modal';
 
+import TestModal from 'test-app/components/modal-dialogs/test-modal';
+
 export default class Application extends Controller {
     @service modal!: Modal;
 
     @action
     openTestModal() {
-        this.modal.open('test-modal', {
+        this.modal.open(TestModal, {
             foo: 'bar',
             actions: {
                 save: this.save

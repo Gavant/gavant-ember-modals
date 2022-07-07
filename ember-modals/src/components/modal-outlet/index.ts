@@ -19,16 +19,20 @@ export default class ModalOutlet extends Component<ModalOutletArgs> {
 
     get currentData(): ModalDialogComponent<unknown> | null {
         if (this.modal.current) {
-            const path = this.modal.current.path;
+            const component = this.modal.current.component;
             const outlet = this.modal.current.config.outlet;
 
-            if (path) {
+            if (component) {
                 if (outlet && outlet === this.name) {
                     const actions = this.modal.current.config.actions ?? {};
+                    const properties = { ...this.modal.current.config };
+                    delete properties.actions;
+                    delete properties.outlet;
                     const transformedComponent: ModalDialogComponent<unknown> = Object.assign(
                         this.modal.current,
                         { config: { outlet: this.modal.current.config.outlet } },
-                        actions
+                        actions,
+                        properties
                     );
                     return transformedComponent;
                 }
@@ -40,11 +44,8 @@ export default class ModalOutlet extends Component<ModalOutletArgs> {
 
     get currentCmp(): unknown | null {
         const modal = this.currentData;
-        return modal ? ensureSafeComponent(this.openModal(modal), this) : null;
-    }
-
-    openModal(modal: ModalDialogComponent<unknown>): string {
-        return `modal-dialogs/${modal.path}`;
+        const safeComponent = modal ? ensureSafeComponent(modal.component, this) : null;
+        return safeComponent;
     }
 
     closeModal() {
