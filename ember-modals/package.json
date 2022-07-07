@@ -28,7 +28,8 @@
     "prepublishOnly": "rollup --config"
   },
   "dependencies": {
-    "@embroider/addon-shim": "^1.0.0"
+    "@embroider/addon-shim": "^1.0.0",
+    "@embroider/util": "^1.0.0"
   },
   "peerDependencies": {
     "animate.css": "^3.7.2",

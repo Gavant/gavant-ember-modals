@@ -3,6 +3,8 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import Component from '@glimmer/component';
 
+import { ensureSafeComponent } from '@embroider/util';
+
 import Modal, { ModalConfig, ModalDialog } from '../../services/modal';
 
 interface ModalOutletArgs {}
@@ -36,9 +38,9 @@ export default class ModalOutlet extends Component<ModalOutletArgs> {
         return null;
     }
 
-    get currentCmp(): string | null {
+    get currentCmp(): unknown | null {
         const modal = this.currentData;
-        return modal ? this.openModal(modal) : null;
+        return modal ? ensureSafeComponent(this.openModal(modal), this) : null;
     }
 
     openModal(modal: ModalDialogComponent<unknown>): string {

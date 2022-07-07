@@ -13,6 +13,30 @@ module.exports = function (defaults) {
         }
     });
 
-    const { maybeEmbroider } = require('@embroider/test-setup');
-    return maybeEmbroider(app);
+    const { Webpack } = require('@embroider/webpack');
+    return require('@embroider/compat').compatBuild(app, Webpack, {
+        packageRules: [
+            {
+                package: 'ember-modal-dialog',
+                components: {
+                    '<ModalDialog/>': {
+                        invokes: {
+                            modalDialogComponentName: [
+                                '{{ember-modal-dialog/-in-place-dialog}}',
+                                '{{ember-modal-dialog/-liquid-tether-dialog}}',
+                                '{{ember-modal-dialog/-tether-dialog}}',
+                                '{{ember-modal-dialog/-liquid-dialog}}',
+                                '{{ember-modal-dialog/-basic-dialog}}'
+                            ]
+                        },
+                        layout: {
+                            addonPath: 'templates/components/modal-dialog.hbs'
+                        }
+                    },
+                    '<LiquidWormhole/>': { safeToIgnore: true },
+                    '<LiquidTether/>': { safeToIgnore: true }
+                }
+            }
+        ]
+    });
 };

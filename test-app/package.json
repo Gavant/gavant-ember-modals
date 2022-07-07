@@ -29,7 +29,10 @@
         "@ember/optional-features": "^2.0.0",
         "@ember/render-modifiers": "^2.0.4",
         "@ember/test-helpers": "^2.7.0",
+        "@embroider/compat": "^1.8.3",
+        "@embroider/core": "^1.8.3",
         "@embroider/test-setup": "^1.7.1",
+        "@embroider/webpack": "^1.8.3",
         "@glimmer/component": "^1.1.2",
         "@glimmer/tracking": "^1.1.2",
         "@types/ember-qunit": "^5.0.0",
@@ -97,7 +100,7 @@
         "qunit-dom": "^2.0.0",
         "sass": "^1.53.0",
         "typescript": "^4.7.4",
-        "webpack": "^5.72.1"
+        "webpack": "^5.73.0"
     },
     "engines": {
         "node": "12.* || 14.* || >= 16"
