@@ -1,5 +1,5 @@
 {
-    "version": "0.0.0",
+    "version": "2.0.0",
     "private": true,
     "repository": "https://github.com/Gavant/gavant-ember-modals",
     "license": "MIT",
@@ -32,7 +32,7 @@
         "plugins": {
             "release-it-lerna-changelog": {
                 "infile": "CHANGELOG.md",
-                "launchEditor": false
+                "launchEditor": true
             },
             "release-it-yarn-workspaces": true
         },
