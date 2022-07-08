@@ -1,3 +1,12 @@
+
+## v3.0.0 (2022-07-08)
+
+#### :boom: Breaking Change
+* [#42](https://github.com/Gavant/gavant-ember-modals/pull/42) Conversion to v2 addon ([@bakerac4](https://github.com/bakerac4))
+
+#### Committers: 1
+- Adam Baker ([@bakerac4](https://github.com/bakerac4))
+
 ### Changelog
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
