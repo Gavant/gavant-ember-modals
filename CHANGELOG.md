@@ -1,4 +1,13 @@
 
+
+## v3.0.1 (2022-07-11)
+
+#### :bug: Bug Fix
+* [#43](https://github.com/Gavant/gavant-ember-modals/pull/43) Fixing types for extending components ([@bakerac4](https://github.com/bakerac4))
+
+#### Committers: 1
+- Adam Baker ([@bakerac4](https://github.com/bakerac4))
+
 ## v3.0.0 (2022-07-08)
 
 #### :boom: Breaking Change
