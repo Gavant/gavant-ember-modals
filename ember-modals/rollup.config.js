@@ -9,12 +9,12 @@ const addon = new Addon({
 export default {
     // This provides defaults that work well alongside `publicEntrypoints` below.
     // You can augment this if you need to.
-    output: addon.output(),
+    output: { ...addon.output(), hoistTransitiveImports: false },
 
     plugins: [
         // These are the modules that users should be able to import from your
         // addon. Anything not listed here may get optimized away.
-        addon.publicEntrypoints(['components/**/*.ts', 'services/**/*.ts']),
+        addon.publicEntrypoints(['components/**/*.ts', 'services/**/*.ts', 'index.ts']),
 
         // These are the modules that should get reexported into the traditional
         // "app" tree. Things in here should also be in publicEntrypoints above, but

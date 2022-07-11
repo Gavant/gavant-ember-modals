@@ -32,9 +32,9 @@
     "@embroider/util": "^1.0.0"
   },
   "peerDependencies": {
+    "@ember/render-modifiers": "^2.0.4",
     "animate.css": "^3.7.2",
     "ember-modal-dialog": "^4.0.0",
-    "@ember/render-modifiers": "^2.0.4",
     "ember-source": ">= 3.24.0"
   },
   "devDependencies": {
@@ -84,9 +84,31 @@
     "release-it": "^14.14.0",
     "rollup": "^2.75.5",
     "rollup-plugin-ts": "^3.0.1",
-    "typescript": "~4.6.3"
+    "typescript": "^4.7.4"
   },
   "typings": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/*"
+      ],
+      "services/modal": [
+        "dist/services/modal.d.ts"
+      ],
+      "components/modal": [
+        "dist/components/modal/index.d.ts"
+      ],
+      "components/modal/header": [
+        "dist/components/modal/header/index.d.ts"
+      ],
+      "components/modal/body": [
+        "dist/components/modal/body/index.d.ts"
+      ],
+      "components/modal/footer": [
+        "dist/components/modal/footer/index.d.ts"
+      ]
+    }
+  },
   "engines": {
     "node": "14.* || >= 16"
   },

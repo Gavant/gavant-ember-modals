@@ -27,7 +27,6 @@
       "test-app/*": [
         "app/*"
       ],
-      "@gavant/ember-modals/*": ["../ember-modals/dist/*"],
       "*": [
         "types/*"
       ]
@@ -37,8 +36,5 @@
     "app/**/*",
     "tests/**/*",
     "types/**/*"
- ],
- "references": [
-    { "path": "../ember-modals" }
  ]
 }
