@@ -1,8 +1,9 @@
 import Evented from '@ember/object/evented';
 import { later } from '@ember/runloop';
 import Service from '@ember/service';
-import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
+
+import { ComponentLike } from '@glint/template';
 
 export interface ModalConfig<A> {
     [key: string]: unknown;
@@ -11,7 +12,7 @@ export interface ModalConfig<A> {
 }
 
 export interface ModalDialog<A> {
-    component: typeof Component;
+    component: ComponentLike;
     config: ModalConfig<A>;
 }
 
@@ -66,7 +67,7 @@ export default class Modal extends Service.extend(Evented) {
      * This means that all you need to pass is the path inside that folder seperated by slashes i.e. `accounts/new`
      * @param config - The config you want to pass to the modal. This should be an object, with any number of attributes inside
      */
-    open(component: typeof Component, modalConfig: Partial<ModalConfig<unknown>> = {}) {
+    open(component: ComponentLike, modalConfig: Partial<ModalConfig<unknown>> = {}) {
         const config = { ...this.defaultModalConfig, ...modalConfig };
         this.modals.push({
             component,
