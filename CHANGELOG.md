@@ -1,5 +1,14 @@
 
 
+
+## v3.0.2 (2022-07-12)
+
+#### :bug: Bug Fix
+* [#44](https://github.com/Gavant/gavant-ember-modals/pull/44) Fixing modal.open service type ([@bakerac4](https://github.com/bakerac4))
+
+#### Committers: 1
+- Adam Baker ([@bakerac4](https://github.com/bakerac4))
+
 ## v3.0.1 (2022-07-11)
 
 #### :bug: Bug Fix
