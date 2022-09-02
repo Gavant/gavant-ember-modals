@@ -1,8 +1,10 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
+import Modal from '@gavant/ember-modals/services/modal';
+
 export default class ApplicationRoute extends Route {
-    @service modal;
+    @service modal!: Modal;
 
     setupController() {
         super.setupController(...arguments);
