@@ -1,4 +1,5 @@
 import Route from '@ember/routing/route';
+import Transition from '@ember/routing/transition';
 import { inject as service } from '@ember/service';
 
 import Modal from '@gavant/ember-modals/services/modal';
@@ -6,8 +7,8 @@ import Modal from '@gavant/ember-modals/services/modal';
 export default class ApplicationRoute extends Route {
     @service modal!: Modal;
 
-    setupController() {
-        super.setupController(...arguments);
+    setupController(...args: [any, unknown, Transition]) {
+        super.setupController(...args);
 
         //testing modal service events
         this.modal.on('opened', (modal) => {
