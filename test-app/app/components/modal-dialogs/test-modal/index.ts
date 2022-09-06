@@ -7,6 +7,7 @@ interface TestModalArgs {
         actions: {
             save: () => void;
         };
+        acooltest: string;
     };
 }
 

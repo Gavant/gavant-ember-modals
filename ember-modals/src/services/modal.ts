@@ -68,7 +68,7 @@ export default class Modal extends Service.extend(Evented) {
      * @param config - The config you want to pass to the modal. This should be an object, with any number of attributes inside
      */
     open(
-        component: ComponentLike<{ Args: { onClose: () => void; options: Record<string, unknown> } }>,
+        component: ComponentLike<{ Args: { onClose: () => void; options: any } }>,
         modalConfig: Partial<ModalConfig<unknown>> = {}
     ) {
         const config = { ...this.defaultModalConfig, ...modalConfig };
