@@ -1,7 +1,7 @@
 declare module 'ember-modal-dialog/components/modal-dialog' {
-import Component from '@glimmer/component';
+    import Component from '@glimmer/component';
 
-        type positions = 'top' | 'right' | 'bottom' | 'left' | 'center' | 'middle' | 'elementCenter';
+    type positions = 'top' | 'right' | 'bottom' | 'left' | 'center' | 'middle' | 'elementCenter';
     type positionCombinations = `${positions} ${positions}`;
     export interface ModalDialogArgs {
         /**
