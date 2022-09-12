@@ -13,7 +13,10 @@ type ModalDialogWithoutConfig<A> = Omit<ModalDialog<A>, 'config'>;
 
 type ModalDialogComponent<A> = ModalDialogWithoutConfig<A> & A & { config: { outlet: ModalConfig<A>['outlet'] } };
 
-export default class ModalOutlet extends Component<ModalOutletArgs> {
+interface ModalOutletSignature {
+    Args: ModalOutletArgs;
+}
+export default class ModalOutlet extends Component<ModalOutletSignature> {
     @service declare modal: Modal;
     name: string = 'application';
 

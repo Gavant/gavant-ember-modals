@@ -1,5 +1,7 @@
 declare module 'ember-modal-dialog/components/modal-dialog' {
-    type positions = 'top' | 'right' | 'bottom' | 'left' | 'center' | 'middle' | 'elementCenter';
+import Component from '@glimmer/component';
+
+        type positions = 'top' | 'right' | 'bottom' | 'left' | 'center' | 'middle' | 'elementCenter';
     type positionCombinations = `${positions} ${positions}`;
     export interface ModalDialogArgs {
         /**
@@ -149,7 +151,14 @@ declare module 'ember-modal-dialog/components/modal-dialog' {
          */
         wrapperClassNames?: string;
     }
-    export default class ModalDialog {
+
+    export interface ModalDialogSignature {
+        Args: ModalDialogArgs;
+        Blocks: {
+            default: [];
+        };
+    }
+    export default class ModalDialog extends Component<ModalDialogSignature> {
         willDestroyElement(): void;
         didInsertElement(): void;
         onCloseAction(): void;
