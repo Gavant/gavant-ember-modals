@@ -11,7 +11,11 @@ interface TestModalArgs {
     };
 }
 
-export default class TestModal extends Component<TestModalArgs> {
+interface TestModalSignature {
+    Args: TestModalArgs;
+}
+
+export default class TestModal extends Component<TestModalSignature> {
     @action
     save() {
         this.args.options.actions.save();

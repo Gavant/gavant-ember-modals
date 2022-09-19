@@ -1,8 +1,9 @@
 declare module 'ember-modal-dialog/components/modal-dialog' {
-    import Component from '@glimmer/component';
+import Component from '@glimmer/component';
 
-    type positions = 'top' | 'right' | 'bottom' | 'left' | 'center' | 'middle' | 'elementCenter';
-    type positionCombinations = `${positions} ${positions}`;
+        export type positions = 'top' | 'right' | 'bottom' | 'left' | 'center' | 'middle' | 'elementCenter';
+    export type positionCombinations = `${positions} ${positions}`;
+
     export interface ModalDialogArgs {
         /**
          * A boolean, when true makes modal animatable using liquid-fire (requires liquid-wormhole to be installed, and for tethering situations liquid-tether. Having these optional dependencies installed and not specifying animatable will make animatable=true be the default.)

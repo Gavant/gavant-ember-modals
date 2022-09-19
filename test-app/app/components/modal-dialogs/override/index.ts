@@ -1,5 +1,10 @@
 import ModalComponent from '@gavant/ember-modals/components/modal';
 
+interface ModalDialogsOverrideArgs {}
+
+interface ModalDialogsOverrideSignature {
+    Args: ModalDialogsOverrideArgs;
+}
 export default class ModalDialogsOverride extends ModalComponent {
     clickOutsideToClose = false;
     /**
