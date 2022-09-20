@@ -16,7 +16,8 @@
         "start": "concurrently 'npm:start:*' --restart-after 5000 --prefix-colors cyan,white,yellow",
         "start:addon": "yarn workspace @gavant/ember-modals run start",
         "start:test": "yarn workspace test-app run start",
-        "test": "yarn workspaces run test"
+        "test": "yarn workspaces run test",
+        "glint": "yarn workspaces run glint"
     },
     "devDependencies": {
         "concurrently": "^7.2.1",

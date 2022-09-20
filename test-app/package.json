@@ -18,6 +18,7 @@
         "lint:hbs:fix": "ember-template-lint . --fix",
         "lint:js": "eslint . --cache",
         "lint:js:fix": "eslint . --fix",
+        "glint": "glint",
         "start": "ember serve",
         "test": "npm-run-all lint test:*",
         "test:ember": "ember test"
@@ -35,6 +36,8 @@
         "@embroider/webpack": "^1.8.3",
         "@glimmer/component": "^1.1.2",
         "@glimmer/tracking": "^1.1.2",
+        "@glint/core": "^0.9.4",
+        "@glint/environment-ember-loose": "^0.9.4",
         "@types/ember-data": "^4.4.1",
         "@types/ember-data__adapter": "^4.0.0",
         "@types/ember-data__model": "^4.0.0",

@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 // Types for compiled templates
 import '@glint/environment-ember-loose';
 
