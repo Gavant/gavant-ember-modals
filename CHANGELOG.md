@@ -1,6 +1,15 @@
 
 
 
+
+## v3.0.6 (2022-10-06)
+
+#### :bug: Bug Fix
+* [#49](https://github.com/Gavant/gavant-ember-modals/pull/49) Add size as arg ([@bakerac4](https://github.com/bakerac4))
+
+#### Committers: 1
+- Adam Baker ([@bakerac4](https://github.com/bakerac4))
+
 ## v3.0.5 (2022-09-20)
 
 ## v3.0.4 (2022-09-06)
