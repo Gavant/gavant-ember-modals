@@ -98,6 +98,13 @@ export interface ModalDialogArgs {
      */
     overlayPosition?: 'parent' | 'sibling';
     /**
+     * size of modal
+     *
+     * @type {string}
+     * @memberof ModalDialogArgs
+     */
+    size?: string;
+    /**
      * A boolean, when true renders the modal without wormholing or tethering, useful for including a modal in a style guide
      *
      * @type {boolean}
@@ -159,11 +166,14 @@ export interface ModalDialogArgs {
 export interface ModalDialogSignature {
     Args: ModalDialogArgs;
     Blocks: {
-        default: [any];
+        default: [{ header: any; body: any; footer: any; close: any }];
     };
 }
 
-export default class ModalDialogClass extends ModalDialog {
+export default class ModalDialogClass extends ModalDialog<
+    { header: any; body: any; footer: any; close: any },
+    ModalDialogSignature
+> {
     @service declare modal: Modal;
 
     /**
@@ -225,7 +235,7 @@ export default class ModalDialogClass extends ModalDialog {
      * @returns Class based on size
      */
     get modalSize(): string {
-        return `modal-${this.size}`;
+        return `modal-${this.args.size ?? this.size}`;
     }
 
     /**

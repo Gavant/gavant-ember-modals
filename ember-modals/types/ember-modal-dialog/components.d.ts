@@ -153,13 +153,13 @@ declare module 'ember-modal-dialog/components/modal-dialog' {
         wrapperClassNames?: string;
     }
 
-    export interface ModalDialogSignature {
+    export interface ModalDialogSignature<Y> {
         Args: ModalDialogArgs;
         Blocks: {
-            default: [];
+            default: [Y];
         };
     }
-    export default class ModalDialog extends Component<ModalDialogSignature> {
+    export default class ModalDialog<Y, T extends ModalDialogSignature<Y>> extends Component<T> {
         willDestroyElement(): void;
         didInsertElement(): void;
         onCloseAction(): void;
