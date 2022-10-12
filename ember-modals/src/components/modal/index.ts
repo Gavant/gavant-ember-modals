@@ -235,7 +235,7 @@ export default class ModalDialogClass extends ModalDialog<
      * @returns Class based on size
      */
     get modalSize(): string {
-        return `modal-${this.args.size ?? this.size}`;
+        return `modal-${this.size}`;
     }
 
     /**
