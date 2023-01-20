@@ -9,7 +9,10 @@ module.exports = function (defaults) {
             watchDependencies: Object.keys(packageJson.dependencies)
         },
         sassOptions: {
-            includePaths: ['../node_modules/@gavant/ember-modals/dist/styles']
+            includePaths: [
+                '../node_modules/ember-modal-dialog/app/styles',
+                '../node_modules/@gavant/ember-modals/dist/styles'
+            ]
         }
     });
 
