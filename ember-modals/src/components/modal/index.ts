@@ -14,7 +14,9 @@ import Modal from '../../services/modal';
 const ESC_KEY = 27;
 
 export interface ModalDialogSignature {
-    Args: EmberModalDialogArgs;
+    Args: EmberModalDialogArgs & {
+        closable?: boolean;
+    };
     Blocks: {
         default: [
             {
