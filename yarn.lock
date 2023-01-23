@@ -1458,6 +1458,11 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@gavant/glint-template-types@^0.3.2":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@gavant/glint-template-types/-/glint-template-types-0.3.2.tgz#8b7281b4e3222775d0c5d428c13e8043011f5ded"
+  integrity sha512-SB8tPhZP8W+0kxdDHlx56G8kQUjrPx4I0A2O3vx6XDt+SGaDewwBtxzm/cWm20ZEcSaIuNacUNcm6Mz4Qe+DUQ==
+
 "@glimmer/component@^1.1.0", "@glimmer/component@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@glimmer/component/-/component-1.1.2.tgz#892ec0c9f0b6b3e41c112be502fde073cf24d17c"

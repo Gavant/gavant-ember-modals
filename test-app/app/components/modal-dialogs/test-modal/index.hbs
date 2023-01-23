@@ -1,4 +1,4 @@
-<Modal @onClose={{@onClose}} as |modal|>
+<Modal @onClose={{@onClose}} @closable={{true}} as |modal|>
     <modal.header @title="Test" />
     <modal.body>
         <p>Custom modal property: {{@options.foo}}</p>
@@ -21,7 +21,7 @@
             id aliquam lacinia, felis nisl accumsan est, a commodo massa ipsum ut ligula. Fusce ac varius magna.
         </p>
     </modal.body>
-    <modal.footer class="justify-content-between">
+    <modal.footer>
         <button class="btn btn-outline-secondary" type="button" {{on "click" modal.close}}>
             Close
         </button>
