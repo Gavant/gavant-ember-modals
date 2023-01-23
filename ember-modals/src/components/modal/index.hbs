@@ -31,7 +31,7 @@
         <div class="modal-content">
             {{yield
                 (hash
-                    header=(component "modal/header" closable=@closable onClose=this.onCloseAction)
+                    header=(component "modal/header" closable=this.closable onClose=this.onCloseAction)
                     body=(component "modal/body")
                     footer=(component "modal/footer")
                     close=this.onCloseAction
