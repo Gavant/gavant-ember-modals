@@ -15,7 +15,9 @@ const ESC_KEY = 27;
 
 export interface ModalDialogSignature {
     Args: EmberModalDialogArgs & {
+        clickOutsideToClose?: boolean;
         closable?: boolean;
+        size?: string;
     };
     Blocks: {
         default: [
