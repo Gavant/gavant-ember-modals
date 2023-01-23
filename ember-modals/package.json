@@ -48,6 +48,7 @@
     "@babel/preset-typescript": "^7.17.12",
     "@babel/runtime": "^7.16.7",
     "@embroider/addon-dev": "^1.7.1",
+    "@gavant/glint-template-types": "^0.3.2",
     "@glint/core": "^0.9.4",
     "@glint/environment-ember-loose": "^0.9.4",
     "@rollup/plugin-babel": "^5.3.1",
